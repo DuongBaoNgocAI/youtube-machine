@@ -77,7 +77,7 @@ if (daCai?.phien_ban === goi.phien_ban) process.exit(0);
 if (!daCai) {
   console.log(`Chào bạn. Đã cài xong ${goi.ten} phiên bản ${goi.phien_ban} (${goi.ngay}), phát hành bởi ${goi.ban_hanh}.`);
   console.log(cuoi.join("\n"));
-  console.log("Cần cài thêm gì: xem HUONG-DAN-CAI.md. Bắt đầu bằng câu: \"Tôi muốn xây kênh YouTube mới\".");
+  console.log("Cần cài thêm gì: xem mục Cài đặt trong README.md. Bắt đầu bằng câu: \"Tôi muốn xây kênh YouTube mới\".");
 } else {
   console.log(`Đã cập nhật ${goi.ten} từ ${daCai.phien_ban} lên ${goi.phien_ban} (${goi.ngay}). Thư mục channels/ của bạn giữ nguyên.`);
   const thayDoi = thayDoiTu(daCai.phien_ban);

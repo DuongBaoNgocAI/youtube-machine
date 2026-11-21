@@ -11,7 +11,7 @@ Nội dung skill nằm trên máy chủ, lấy qua Cổng YTM (máy chủ MCP `y
 3. Gmail chưa mua, đủ 2 máy, bị khóa hay hết hạn: đọc nguyên văn lời công cụ trả về cho người dùng và dừng ở đó.
 4. Chưa đăng nhập xong thì chưa đọc skill, chưa làm theo trí nhớ.
 
-Không thấy công cụ `ytm_...`: Cổng YTM chưa được cài. Chỉ người dùng tới mục "Cổng YTM" trong `HUONG-DAN-CAI.md` (Claude Code: `claude mcp add ytm -- node tools/ytm-cong.mjs`, rồi mở lại).
+Không thấy công cụ `ytm_...`: Cổng YTM chưa được cài. Chỉ người dùng tới mục "Cài đặt" trong `README.md` (Claude Code: `claude mcp add ytm -- node tools/ytm-cong.mjs`, rồi mở lại).
 
 ## Đọc skill
 
@@ -19,7 +19,7 @@ Mọi file skill đọc bằng `ytm_doc`, đường dẫn tính từ thư mục 
 
 ## Bắt đầu
 
-Sau khi đăng nhập xong, chạy `node tools/phien-ban.mjs`. Lệnh in ra chữ thì báo nguyên văn cho người dùng, không in gì thì đi tiếp. Chưa có Node.js thì đọc `PHIEN-BAN.json`, báo tên, phiên bản, nhóm hỗ trợ, và chỉ tới `HUONG-DAN-CAI.md`.
+Sau khi đăng nhập xong, chạy `node tools/phien-ban.mjs`. Lệnh in ra chữ thì báo nguyên văn cho người dùng, không in gì thì đi tiếp. Chưa có Node.js thì đọc `PHIEN-BAN.json`, báo tên, phiên bản, nhóm hỗ trợ, và chỉ tới mục "Cài đặt" trong `README.md`.
 
 Người dùng muốn làm bất cứ việc gì về kênh YouTube ("xây kênh", "tiếp tục kênh X", "viết kịch bản", "dựng video"): đọc `ytm_doc("youtube-machine/SKILL.md")` và làm theo. Skill con đọc bằng `ytm_doc("<tên>/SKILL.md")`. Nhắc tới một skill nghĩa là đọc file đó rồi làm theo.
 

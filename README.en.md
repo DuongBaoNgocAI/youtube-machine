@@ -91,8 +91,6 @@ Then open the folder in Claude Code (or set it as the working folder in the Clau
 claude mcp add ytm -- node tools/ytm-cong.mjs
 ```
 
-A detailed step-by-step guide with troubleshooting is in [HUONG-DAN-CAI.md](HUONG-DAN-CAI.md) (Vietnamese).
-
 ## Usage
 
 Open the assistant in the folder and say what you want in plain words:

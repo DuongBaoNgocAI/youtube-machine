@@ -98,7 +98,17 @@ Claude không hỏi về máy chủ `ytm` thì chạy lệnh sau tại thư mụ
 claude mcp add ytm -- node tools/ytm-cong.mjs
 ```
 
-Hướng dẫn chi tiết từng bước và cách sửa lỗi thường gặp có ở [HUONG-DAN-CAI.md](HUONG-DAN-CAI.md).
+### Lỗi thường gặp
+
+| Bạn thấy | Làm gì |
+|---|---|
+| `node` is not recognized | Cài lại Node.js bản LTS rồi khởi động lại máy |
+| Trợ lý không biết quy trình YouTube Machine | Kiểm tra đã mở đúng thư mục có file `AGENTS.md`, rồi mở phiên mới |
+| Trợ lý không thấy công cụ `ytm_...` | Chạy lệnh `claude mcp add ytm` ở trên rồi mở lại Claude |
+| Trợ lý báo không chạy được lệnh | Đổi sang chế độ cho phép chạy lệnh |
+| Báo chưa có ffmpeg | Chạy `winget install Gyan.FFmpeg`, đóng và mở lại trợ lý |
+
+Vẫn chưa xong thì gửi ảnh chụp lỗi và tên trợ lý bạn dùng vào nhóm hỗ trợ. Đừng gửi mật khẩu hay khóa API lên nhóm.
 
 ## Cách dùng
 
