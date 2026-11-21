@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{TIEU_DE}}</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#ffffff; --text:#1c1f26; --muted:#5f6675; --line:#e3e6ec;
+    --accent:#c0392b; --accent-soft:#fbe9e7; --ok:#2e7d32; --warn:#b26a00; --bad:#b3261e;
+    --bar:#e9ecf1;
+  }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+    --bg:#15171c; --card:#1e2128; --text:#e8eaf0; --muted:#9aa3b2; --line:#2c313b;
+    --accent:#ff6b5e; --accent-soft:#3a2420; --ok:#7bd389; --warn:#f0b35c; --bad:#ff7b72; --bar:#2c313b;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#15171c; --card:#1e2128; --text:#e8eaf0; --muted:#9aa3b2; --line:#2c313b;
+    --accent:#ff6b5e; --accent-soft:#3a2420; --ok:#7bd389; --warn:#f0b35c; --bad:#ff7b72; --bar:#2c313b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 16px 60px}
+  header{margin-bottom:22px}
+  .kicker{color:var(--accent);font-weight:600;letter-spacing:.04em;text-transform:uppercase;font-size:12px}
+  h1{margin:4px 0 6px;font-size:26px;line-height:1.2}
+  .meta{color:var(--muted);font-size:13px}
+  .steps{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 0}
+  .steps span{font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .steps .done{background:var(--ok);color:#fff;border-color:transparent}
+  .steps .now{background:var(--accent);color:#fff;border-color:transparent}
+  h2{font-size:18px;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:10px 0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .option{position:relative}
+  .option.pick{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+  .option .tag{position:absolute;top:12px;right:12px;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent);color:#fff}
+  .option h3{margin:0 0 6px;font-size:16px}
+  .option p{margin:4px 0;color:var(--muted);font-size:14px}
+  .score{display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0}
+  .score label{flex:0 0 150px;color:var(--muted)}
+  .score .bar{flex:1;height:8px;background:var(--bar);border-radius:4px;overflow:hidden}
+  .score .bar i{display:block;height:100%;background:var(--accent)}
+  .score b{flex:0 0 28px;text-align:right}
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:var(--accent-soft);color:var(--text);font-weight:600;font-size:13px}
+  tr:last-child td{border-bottom:none}
+  .table-wrap{overflow-x:auto}.table-wrap table{min-width:640px}
+  .pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);margin:2px 2px 2px 0}
+  .kw{display:block;background:var(--bar);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;font-size:13.5px;line-height:1.6;user-select:all;-webkit-user-select:all;cursor:copy;word-break:break-word}
+  .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+  .decide{border-left:4px solid var(--accent)}
+  .decide h2{border:none;margin-top:0}
+  .decide ol{margin:6px 0 0 18px;padding:0}
+  .decide li{margin:4px 0}
+  .quote{font-style:italic;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;margin:8px 0}
+  .swatch{display:inline-block;width:38px;height:38px;border-radius:8px;border:1px solid var(--line);vertical-align:middle;margin-right:6px}
+  .timeline{display:grid;grid-template-columns:70px 1fr;gap:6px 12px;font-size:14px}
+  .timeline .t{color:var(--muted);font-variant-numeric:tabular-nums}
+  footer{margin-top:36px;color:var(--muted);font-size:12px}
+  @media (max-width:600px){ .score label{flex-basis:110px} h1{font-size:22px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">YouTube Machine · Kênh: {{TEN_KENH}}</div>
+    <h1>{{TIEU_DE}}</h1>
+    <div class="meta">Bước {{SO_BUOC}}/8 · {{NGAY}} · {{PHU_DE}}</div>
+    <div class="steps">
+      <!-- đánh class "done" cho bước đã xong, "now" cho bước này -->
+      <span class="done">1 Ngách</span><span class="now">2 Đối thủ</span><span>3 Từ khóa</span><span>4 Thương hiệu</span><span>5 Tạo kênh</span><span>6 Kế hoạch</span><span>7 Kịch bản</span><span>8 SEO</span>
+    </div>
+  </header>
+
+  <!-- 1. Tóm tắt 3-5 dòng: điều quan trọng nhất người dùng cần biết -->
+  <section class="card">
+    <strong>Tóm tắt</strong>
+    <p>{{TOM_TAT}}</p>
+  </section>
+
+  <!-- 2. Các lựa chọn cần duyệt (nếu bước này có): thẻ .option, thẻ được đề xuất thêm class .pick và .tag -->
+  <h2>Lựa chọn</h2>
+  <div class="grid">
+    <div class="card option pick">
+      <span class="tag">Đề xuất</span>
+      <h3>Phương án A</h3>
+      <p>Một câu giải thích.</p>
+      <div class="score"><label>Nhu cầu</label><div class="bar"><i style="width:80%"></i></div><b>4</b></div>
+      <div class="score"><label>Cạnh tranh (thấp tốt)</label><div class="bar"><i style="width:40%"></i></div><b>2</b></div>
+    </div>
+    <div class="card option">
+      <h3>Phương án B</h3>
+      <p>Một câu giải thích.</p>
+    </div>
+  </div>
+
+  <!-- 3. Bảng dữ liệu: bọc trong .table-wrap để cuộn ngang trên màn hình nhỏ -->
+  <h2>Dữ liệu</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Cột</th><th>Cột</th></tr></thead>
+      <tbody><tr><td>…</td><td>…</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- Từ khóa, tag, hashtag: luôn một dòng cách nhau bằng dấu phẩy trong .kw (bấm một lần chọn hết để sao chép), không dùng .pill -->
+  <p><strong>Từ khóa</strong></p>
+  <p class="kw">từ khóa một, từ khóa hai, từ khóa ba</p>
+
+  <!-- 4. Khối quyết định: luôn có, luôn ở cuối, nói rõ người dùng cần trả lời gì -->
+  <section class="card decide">
+    <h2>Cần bạn quyết định</h2>
+    <ol>
+      <li>Chọn phương án A, B hay C?</li>
+      <li>Có điều gì muốn thêm hoặc bỏ không?</li>
+    </ol>
+    <p class="meta">Trả lời trong khung chat; tôi sẽ ghi vào hồ sơ kênh và sang bước tiếp theo.</p>
+  </section>
+
+  <footer>Nguồn dữ liệu: {{NGUON}}. Số liệu đánh dấu (~) là ước lượng, chưa kiểm chứng. File gốc: {{FILE_GOC}}</footer>
+</div>
+</body>
+</html>

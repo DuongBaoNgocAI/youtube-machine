@@ -1,0 +1,11 @@
+{
+  "_ghi_chu": "Mẫu cho tools/motion/ghep-motion.mjs. Chép thành 4-dung/motion/motion.json. Thời gian là giây của video đầy đủ. Đường dẫn tính từ thư mục chứa file này. chen: mp4 đặc thay hình đoạn đó, mov trong suốt phủ lên hình. sfx: tiếng thêm, am 0.15-0.4. t là lúc đầu file phát, thay t bằng dinh để chỗ to nhất của file rơi đúng giây đó.",
+  "chen": [
+    { "file": "thu-1.mp4", "tu": 104.583 },
+    { "file": "lop-chu.mov", "tu": 300 }
+  ],
+  "sfx": [
+    { "file": "../../../../tai-nguyen/sfx/motion/whoosh.wav", "dinh": 108.7, "am": 0.34 },
+    { "file": "../../../../tai-nguyen/sfx/motion/pop.wav", "t": 109.16, "am": 0.35 }
+  ]
+}

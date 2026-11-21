@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+/* Thay màu và font theo kenh/motion.md */
+@font-face{font-family:'Display';src:url('assets/fonts/Anton-Regular.ttf')}
+:root{--nen:#12161F;--chu:#F2E9DC;--nhan:#E5533D}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--nen)}
+#root{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--nen);font-family:'Display';color:var(--chu)}
+.scene{position:absolute;inset:0;overflow:hidden;background:var(--nen)}
+.kb{position:absolute;inset:0}
+.kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.kb svg{position:absolute;inset:0;width:100%;height:100%}
+.big{position:absolute;z-index:30;text-transform:uppercase;line-height:1.05;text-shadow:0 4px 0 rgba(0,0,0,.7)}
+.tag{position:absolute;z-index:30;left:96px;top:96px;font-size:58px;text-transform:uppercase;background:var(--nen);padding:14px 24px 10px;white-space:nowrap}
+.w{display:inline-block}
+.mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.06em .02em}
+.mask>span{display:inline-block}
+.wheel{display:inline-flex;line-height:1}
+.col{display:inline-block;height:1.1em;overflow:hidden;line-height:1.1em}
+.col>div{display:flex;flex-direction:column}
+.col span{display:block;height:1.1em;text-align:center}
+.vien{position:absolute;inset:0;z-index:45;pointer-events:none;background:radial-gradient(ellipse at center,transparent 62%,rgba(0,0,0,.4) 100%)}
+</style>
+</head>
+<body>
+<!-- data-duration: độ dài đoạn. Cảnh sau có z-index cao hơn, chồng lên cảnh trước vài khung để chuyển cảnh. -->
+<div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1920" data-height="1080">
+  <div id="s1" class="clip scene" data-start="0" data-duration="5.3" data-track-index="0" style="z-index:1"><div class="kb"><img src="assets/img/001.jpg" alt=""></div></div>
+  <div id="s2" class="clip scene" data-start="5" data-duration="5" data-track-index="1" style="z-index:2"><div class="kb"><img src="assets/img/002.jpg" alt=""></div></div>
+
+  <div id="cau" class="clip big" data-start="1" data-duration="3.8" data-track-index="2" style="left:96px;top:96px;font-size:92px"><span class="w">Tu</span> <span class="w" style="color:var(--nhan)">khoa</span> <span class="w">o day</span></div>
+  <div id="so" class="clip big" data-start="6" data-duration="4" data-track-index="3" style="left:96px;top:96px"><div class="wheel" id="w1" style="font-size:190px;color:var(--nhan)"></div></div>
+  <div class="vien"></div>
+</div>
+<script>
+const T0 = 0; // giây của video đầy đủ tại khung đầu đoạn
+const R = t => +(t - T0).toFixed(3); // đổi mốc từ stt.json sang giây trong đoạn
+const tl = gsap.timeline({ paused: true });
+
+/* Ken Burns trên lớp .kb, dừng trước lúc chuyển cảnh */
+const kb = (s, f, t, at, d) => tl.fromTo(s + ' .kb', f, { ...t, duration: d, ease: 'none' }, at);
+/* Hiện từng từ theo mốc giọng */
+const tuTu = (s, moc) => gsap.utils.toArray(s + ' .w').forEach((w, i) => tl.fromTo(w, { opacity: 0, filter: 'blur(6px)' }, { opacity: 1, filter: 'blur(0px)', duration: .13 }, moc[i]));
+/* Lộ dần từ trái sang */
+const lanVao = (s, at) => tl.fromTo(s, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: .28, ease: 'expo.out' }, at);
+/* Lia nhanh sang cảnh sau, at là mốc cắt */
+const lia = (cu, moi, at, huong = 1) => {
+  tl.to(cu + ' .kb', { x: -340 * huong, filter: 'blur(14px)', duration: .2, ease: 'power3.in' }, at - .2);
+  tl.fromTo(moi, { x: 1920 * huong }, { x: 0, duration: .3, ease: 'expo.out' }, at - .03);
+};
+/* Mở cảnh sau qua lỗ tròn từ một điểm có nghĩa */
+const moTron = (s, x, y, at) => tl.fromTo(s, { clipPath: `circle(0px at ${x}px ${y}px)` }, { clipPath: `circle(2100px at ${x}px ${y}px)`, duration: .36, ease: 'power2.inOut' }, at);
+/* Bánh số: wheel('w1','8,000') rồi roll(cot, at, thoiLuong, coChu*1.1) */
+function wheel(id, str) {
+  const el = document.getElementById(id);
+  [...str].forEach(ch => {
+    if (/[0-9]/.test(ch)) {
+      const c = document.createElement('span'); c.className = 'col';
+      const s = document.createElement('div');
+      for (let n = 0; n <= 9; n++) { const d = document.createElement('span'); d.textContent = n; s.appendChild(d); }
+      const d = document.createElement('span'); d.textContent = ch; s.appendChild(d);
+      c.appendChild(s); el.appendChild(c);
+    } else { const p = document.createElement('span'); p.textContent = ch; el.appendChild(p); }
+  });
+  return [...el.querySelectorAll('.col>div')];
+}
+const roll = (cot, at, d, o) => cot.forEach((s, i) => tl.fromTo(s, { y: 0 }, { y: -10 * o, duration: d + i * .07, ease: 'expo.out' }, at));
+
+/* Canvas và mô phỏng: chạy p từ 0 tới tong trong [dau, cuoi], ve(p) chỉ đọc dữ liệu đã tính sẵn */
+const moPhong = (tong, dau, cuoi, ve) => {
+  let p = 0;
+  const dk = { p(v) { if (v === undefined) return p; p = v; ve(p); } };
+  ve(0);
+  tl.to(dk, { p: tong, duration: cuoi - dau, ease: 'none' }, dau);
+};
+/* Số ngẫu nhiên có hạt giống */
+const mulberry32 = (a) => () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+/* Ví dụ, thay bằng bản đồ nhịp */
+kb('#s1', { scale: 1.12 }, { scale: 1.03 }, 0, 4.7);
+kb('#s2', { scale: 1.03 }, { scale: 1.1 }, 5, 5);
+tuTu('#cau', [1.0, 1.3, 1.6]);
+lia('#s1', '#s2', 5);
+roll(wheel('w1', '300'), 6.0, .7, 209);
+
+window.__timelines['main'] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

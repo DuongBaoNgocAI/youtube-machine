@@ -1,0 +1,30 @@
+YouTube Machine
+Bản quyền thuộc AI CỘNG VN. Giữ mọi quyền.
+Liên hệ, hỗ trợ: https://zalo.me/g/yenkqg494
+
+1. Phạm vi dùng
+Mỗi bản mua dành cho 1 người, cài trên tối đa 2 máy, để làm kênh của chính người đó.
+Không bán lại, không chia sẻ, không đăng lại toàn bộ hay một phần bộ skill khi chưa được AI CỘNG VN đồng ý bằng văn bản.
+Nội dung bạn tạo ra bằng bộ skill thuộc về bạn, trong phạm vi điều khoản của các công cụ AI bạn dùng.
+
+2. Cập nhật và hỗ trợ
+Bản mới miễn phí trong 12 tháng kể từ ngày mua.
+Hỗ trợ qua nhóm chung ở địa chỉ trên, không có hỗ trợ riêng từng người.
+
+3. Hoàn tiền
+Đây là sản phẩm số. Không hoàn tiền sau khi đã nhận file, trừ trường hợp pháp luật áp dụng cho giao dịch yêu cầu khác.
+
+4. Không bảo đảm kết quả
+Bộ skill cung cấp nguyên trạng. AI CỘNG VN không bảo đảm về lượt xem, doanh thu hay việc kênh được duyệt kiếm tiền.
+Công cụ bên ngoài có thể đổi giá, đổi cách hoạt động hoặc ngừng hoạt động.
+
+5. Trách nhiệm của người dùng
+Bạn tự chịu trách nhiệm về nội dung đăng tải, chi phí các công cụ bạn dùng, và việc tuân thủ chính sách của YouTube cùng điều khoản của từng công cụ AI.
+Điều này gồm cả khai báo nội dung AI khi được yêu cầu, và việc xử lý dấu hiển thị trên ảnh, video do công cụ AI tạo ra. Công cụ xóa dấu đi kèm là tùy chọn. Bạn tự kiểm tra điều khoản của công cụ đã tạo ra nội dung trước khi dùng.
+
+6. Thành phần của bên thứ ba, giữ giấy phép riêng
+- Font Anton: SIL Open Font License, tools/blender/fonts/OFL-Anton.txt
+- Font Special Elite: Apache License 2.0, tools/blender/fonts/LICENSE-SpecialElite.txt
+- Mẫu âm thanh Kenney: CC0, tools/blender/sfx-cc0/*/License.txt
+
+Các công cụ bên ngoài (Flow AIC, Eureka AIC, ElevenLabs, CapCut, Blender, ffmpeg) không đi kèm và có điều khoản riêng.

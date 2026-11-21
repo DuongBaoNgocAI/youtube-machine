@@ -1,0 +1,1 @@
+Thư mục này do tools/dong-bo-skill.mjs tạo. Đừng sửa ở đây, sửa ở .claude/skills rồi chạy lại lệnh.

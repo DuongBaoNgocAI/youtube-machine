@@ -1,0 +1,25 @@
+{
+  "_ghi_chu": "Mẫu file hiệu ứng cho tools/blender/ghep_video.py. Chép thành 4-dung/NNN-slug.hieu-ung.json rồi sửa theo kế hoạch 7d. Neo theo số cảnh ('canh': 12) hoặc theo cụm chữ trong SRT ('khi': 'cụm chữ', thêm 'lan': 2 nếu cụm lặp, 'lech': 0.2 để lệch giây). Xóa khóa không dùng. Trong khóa mau, bronze là màu nhấn, parchment là màu chữ, graphite là màu tối, đổi theo bảng màu kênh.",
+  "ten_kenh": "TEN KENH",
+  "nhan_file": "VIDEO 001",
+  "mau": { "parchment": "#F3E9D8", "bronze": "#B87333", "graphite": "#1B1F24" },
+  "font": { "dam": "Anton-Regular.ttf", "may-chu": "SpecialElite-Regular.ttf", "dau": "SpecialElite-Regular.ttf" },
+  "mau_go": "parchment",
+  "chuyen_canh": { "2": "flash", "3": "wipe" },
+  "dap_vao": [1],
+  "the_chuong": [
+    { "canh": 3, "nhan": "PHAN 1", "ten": "Ten chuong" }
+  ],
+  "chu": [
+    { "kieu": "lon", "chu": "TU KHOA", "phu": "dong phu ngan", "canh": 1 },
+    { "kieu": "dia_danh", "chu": "DIA DANH", "phu": "nam, boi canh", "canh": 2 }
+  ],
+  "sfx": [
+    { "file": "boom", "canh": 1, "am": 0.4 }
+  ],
+  "rung": [
+    { "canh": 1, "manh": 14, "dai": 0.45 }
+  ],
+  "hat_phim": { "do_dam": 0.08 },
+  "nhac": { "doan": [[0, "meo1"]] }
+}

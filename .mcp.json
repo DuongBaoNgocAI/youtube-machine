@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ytm": {
+      "command": "node",
+      "args": ["tools/ytm-cong.mjs"]
+    }
+  }
+}

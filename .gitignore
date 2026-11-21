@@ -1,0 +1,15 @@
+# Dữ liệu kênh và file nặng không đưa lên kho mã
+channels/*
+!channels/_template/
+.youtube-machine/
+dist/goi-phat/
+dist/*.zip
+tools/blender/lop-phu/
+tools/blender/models/
+tools/whisper-models/
+__pycache__/
+*.blend1
+.claude/settings.local.json
+tools/rife/
+tools/wiggle/
+_thu-nghiem/

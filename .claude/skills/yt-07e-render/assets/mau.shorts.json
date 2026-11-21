@@ -1,0 +1,15 @@
+{
+  "_ghi_chu": "Mẫu khai báo Shorts cho tools/blender/cat_shorts.py. Chép thành 4-dung/NNN.shorts.json, thay NNN-slug. Đường dẫn tính từ thư mục file này. Mỗi Short gồm một hoặc nhiều đoạn [từ cảnh, đến cảnh]; nhiều đoạn thì hòa nối 0,3 giây. Bỏ 'nhac' để tự tạo nhạc gốc.",
+  "chung": {
+    "canh": "../3-hinh/canh",
+    "scenes": "../2-giong/NNN-slug.scenes.srt",
+    "srt": "../2-giong/NNN-slug.srt",
+    "audio": "../2-giong/NNN-slug.mp3",
+    "hieu_ung": "NNN-slug.hieu-ung.json",
+    "nhac": "nhac/NNN-nhac.wav"
+  },
+  "ra": "../5-xuat/shorts",
+  "shorts": [
+    { "ten": "NNN-short-1", "tieu_de": "CAU MO DAU\nGAY TO MO", "doan": [[1, 8]] }
+  ]
+}
