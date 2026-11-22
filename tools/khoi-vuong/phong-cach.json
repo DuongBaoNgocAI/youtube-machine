@@ -1,0 +1,217 @@
+{
+  "phong_cach": {
+    "sandbox-khoi": {
+      "ten": "Sandbox khối pixel",
+      "goi": ["minicraft","minecraft","khối vuông","voxel","sandbox"],
+      "mo_ta": "Thế giới xếp từ khối cùng cỡ, vân pixel, địa hình bậc thang, hẻm núi và nước. Hợp sinh tồn, xây dựng, khám phá.",
+      "luoi": "vuong",
+      "boi_canh": {
+        "hem-nui": {"ten":"Hẻm núi mùa thu","troi":["#f6c7a0","#4f86c6"],"dat":["#e2b84c","#d4a640"],"da":["#56657f","#6b7a91","#8592a3","#46516a"],"la":["#c8453b","#e0703a","#a83550"],"than":"#e6d3b3","nuoc":"#2aa6b8","nhan":"#f4efe2","nhan2":"#c8553d","hat":"#e0703a"},
+        "bang-tim": {"ten":"Cao nguyên băng tím","troi":["#f3cfe0","#4a4c96"],"dat":["#eef3ff","#dce6fa"],"da":["#5a5685","#716b9e","#8c88b8","#49456f"],"la":["#38b6c9","#5fd0d8","#2b8fb0"],"than":"#3d3560","nuoc":"#3a5fc0","nhan":"#f2e8ff","nhan2":"#e0568f","hat":"#ffffff"},
+        "rung-nam": {"ten":"Rừng nấm phát sáng","troi":["#5b7f9a","#181a45"],"dat":["#4b3f8f","#574a9e"],"da":["#27304f","#33405f","#3f4f70","#1f2540"],"la":["#ff5fa2","#ff8fc0","#d63f8c"],"than":"#d9e6f2","nuoc":"#29e0c8","nhan":"#c9d4ea","nhan2":"#7d5fd0","hat":"#7dfff0"}
+      },
+      "nhan_vat": {"ten":"Mộc","dang":"thu","than":"#e8843c","mat":"#fff1dc","ao":"#2f6f73","quan":"#3a2e3f","phu":"#f2c14e","mu":"tai","deo":"khan"},
+      "kieu": "sandbox",
+      "nhom": "game",
+      "nhac": "phieu-luu",
+      "phu_mau": {"ten":"Cục","dang":"quai","than":"#4a3d63","mat":"#ffd84d","ao":"#35294d","quan":"#241c33","phu":"#e0568f","mu":"khong","deo":"khong"}
+    },
+    "do-choi-nhua": {
+      "ten": "Đồ chơi nhựa vượt ải",
+      "goi": ["roblox","obby","vượt ải","đồ chơi nhựa","parkour"],
+      "mo_ta": "Thế giới nhựa bóng bo tròn, màu rực, bục nhảy lơ lửng, thanh xoay, cổng vòng. Hợp thử thách, vượt ải, hài nhanh.",
+      "luoi": "tron",
+      "boi_canh": {
+        "cong-vien": {"ten":"Công viên trên mây","troi":["#d8f3ff","#3a8ef0"],"dat":["#58cc7a","#4abb6d"],"da":["#ff5d73","#ffc93c","#4d7cff","#a56bff"],"la":["#2fb36a","#7be08f","#ff8fb8"],"than":"#a8754f","nuoc":"#ffffff","nhan":"#ffffff","nhan2":"#ff5d73","hat":"#ffe36e"},
+        "dung-nham": {"ten":"Ải dung nham","troi":["#ffb26b","#43234f"],"dat":["#4a4660","#57526e"],"da":["#ffc93c","#ff5d3c","#22c7c7","#8b5cf6"],"la":["#ff7a3c","#ffb13c","#ff4d6d"],"than":"#2e2a3d","nuoc":"#ff5a1f","nhan":"#f4e9da","nhan2":"#ff5d3c","hat":"#ffcf5a"},
+        "keo-ngot": {"ten":"Xứ kẹo ngọt","troi":["#fff0f6","#c68bea"],"dat":["#ffb3d1","#ffa3c7"],"da":["#7be0d6","#fff07a","#ff6fae","#9d8cff"],"la":["#ff6fae","#7be0d6","#fff07a"],"than":"#ffffff","nuoc":"#8a5a44","nhan":"#fff7fb","nhan2":"#9d8cff","hat":"#ffffff"}
+      },
+      "nhan_vat": {"ten":"Bon","dang":"vien","than":"#a56bff","mat":"#24304f","ao":"#25c3b4","quan":"#24304f","phu":"#ffc93c","mu":"non","deo":"balo"},
+      "kieu": "nhua",
+      "nhom": "game",
+      "nhac": "vui",
+      "phu_mau": {"ten":"Ụ","dang":"quai","than":"#ff5d73","mat":"#ffffff","ao":"#d83f5c","quan":"#24304f","phu":"#ffc93c","mu":"khong","deo":"khong"}
+    },
+    "kinh-di-retro": {
+      "ten": "Kinh dị retro",
+      "goi": ["kinh dị","kinh dị retro","horror","ps1","creepypasta","truyện ma"],
+      "nhom": "game",
+      "mo_ta": "3D đời console cũ: điểm ảnh to, sương dày, quầng đèn pin, màu úa. Hợp truyện ma, sinh tồn ban đêm.",
+      "luoi": "khac",
+      "canh": "kinh-di",
+      "kieu": "kinh-di",
+      "hinh": "hop",
+      "suong": [13,44],
+      "phan_giai": 0.36,
+      "hau": {"diem_anh":true,"soc":true,"vien_toi":0.42},
+      "nhac": "cang",
+      "khong_tre_em": true,
+      "boi_canh": {
+        "lang-bo": {"ten":"Làng bỏ hoang","troi":["#4c616c","#16202a"],"dat":["#5a6150","#4c5344"],"da":["#6b6860","#5c5650","#4b4a48","#3a3838"],"la":["#465040","#59523f","#3d4538"],"than":"#3b332c","nuoc":"#1d2a2b","nhan":"#d8d3bd","nhan2":"#c9534a","hat":"#aab5a8"},
+        "rung-mau": {"ten":"Rừng trăng đỏ","troi":["#85403a","#2a1018"],"dat":["#5b4a45","#4d3e3a"],"da":["#6a5a58","#5a4a4c","#473a3e","#372c31"],"la":["#533538","#6a4038","#452c30"],"than":"#2e2325","nuoc":"#2a1418","nhan":"#f0b8a0","nhan2":"#e0603c","hat":"#c98a78"},
+        "benh-vien": {"ten":"Trại tường xanh","troi":["#68876c","#1b2c22"],"dat":["#77806f","#68715f"],"da":["#8d9684","#77806f","#5e6759","#444c42"],"la":["#56664f","#6b7660","#44533f"],"than":"#4a4a40","nuoc":"#14201a","nhan":"#d7e6c8","nhan2":"#c0a050","hat":"#b8d0b0"},
+        "do-thi-mua": {"ten":"Đô thị mưa xám","pho":true,"troi":["#46525c","#0d131b"],"dat":["#48525a","#59636a"],"da":["#7c858b","#69737a","#59626a","#737069"],"la":["#8b8a78","#5f6f75","#3d4951"],"than":"#2b3136","nuoc":"#71828d","nhan":"#e6c27a","nhan2":"#c9453c","hat":"#f3f0d6"}
+      },
+      "nhan_vat": {"ten":"Lam","dang":"nguoi","than":"#d9a47e","mat":"#2a2020","ao":"#c9a03c","quan":"#33323c","phu":"#a8433a","mu":"trum","deo":"balo"},
+      "phu_mau": {"ten":"Bóng","dang":"quai","than":"#2b2b30","mat":"#f2f0d0","ao":"#1c1c22","quan":"#121216","phu":"#a03030","mu":"khong","deo":"khong"}
+    },
+    "low-poly": {
+      "ten": "Low-poly phiêu lưu",
+      "goi": ["low-poly","low poly","lowpoly","phiêu lưu"],
+      "nhom": "game",
+      "mo_ta": "Mặt phẳng góc cạnh, núi chóp, thông tam giác, màu dịu. Hợp du hành, sinh tồn nhẹ, địa lý.",
+      "luoi": "khac",
+      "canh": "phieu-luu",
+      "kieu": "phieu-luu",
+      "hinh": "hop",
+      "suong": [32,90],
+      "nhac": "phieu-luu",
+      "boi_canh": {
+        "nui-ho": {"ten":"Hồ núi","troi":["#f4e3c8","#5f9fcf"],"dat":["#86b56a","#78a85f"],"da":["#8a7f86","#9c8f8f","#766d78","#625b6b"],"la":["#2f7d5c","#3f9468","#5aa872"],"than":"#7a5238","nuoc":"#3c8fb5","nhan":"#fff6e8","nhan2":"#dd6b4d","hat":"#ffffff"},
+        "sa-mac": {"ten":"Sa mạc hoàng hôn","troi":["#ffd2a0","#8a6fb3"],"dat":["#e8b878","#dcaa68"],"da":["#c9785a","#b5654f","#d98c68","#97503f"],"la":["#6f9b62","#88ad6a","#567f58"],"than":"#8a5a3c","nuoc":"#d9a566","nhan":"#fff0d8","nhan2":"#3c8c9c","hat":"#ffe0b0"},
+        "cuc-quang": {"ten":"Đêm cực quang","troi":["#7fd8c0","#1d2550"],"dat":["#dfeaf2","#cddce8"],"da":["#6a7a9c","#7c8cac","#58678c","#46547a"],"la":["#2c8c8c","#45a89c","#6a5fb0"],"than":"#5a4a5c","nuoc":"#2a4a80","nhan":"#f4fbff","nhan2":"#b860c8","hat":"#a8fff0"}
+      },
+      "nhan_vat": {"ten":"Tèo","dang":"nguoi","than":"#f0b890","mat":"#3a2a28","ao":"#e06a4d","quan":"#3c4a66","phu":"#f4d060","mu":"vanh","deo":"balo"},
+      "phu_mau": {"ten":"Đốm","dang":"thu","than":"#b9c4cc","mat":"#ffffff","ao":"#3c8c9c","quan":"#3a3f52","phu":"#e06a4d","mu":"tai","deo":"khan"}
+    },
+    "neon": {
+      "ten": "Neon tương lai",
+      "goi": ["neon","tương lai","cyber","cyberpunk","synthwave"],
+      "nhom": "game",
+      "mo_ta": "Thành phố đêm, viền sáng, lưới phát quang. Hợp công nghệ, AI, tiền số, viễn tưởng.",
+      "luoi": "khac",
+      "canh": "neon",
+      "kieu": "neon",
+      "hinh": "hop",
+      "suong": [34,92],
+      "hau": {"quang":0.22,"vien_toi":0.3},
+      "nhac": "dien-tu",
+      "boi_canh": {
+        "pho-dem": {"ten":"Phố đêm","troi":["#5a2a78","#0b0c24"],"dat":["#1c1c3c","#24244a"],"da":["#20204a","#2a2458","#181838","#302060"],"la":["#ff4fd8","#35e6ff","#ffe45c"],"than":"#303050","nuoc":"#0a0a1c","nhan":"#35e6ff","nhan2":"#ff4fd8","hat":"#35e6ff"},
+        "luoi-vang": {"ten":"Lưới hoàng hôn","troi":["#ff7a59","#2a0f4a"],"dat":["#2a1438","#341a44"],"da":["#3a1c50","#46205c","#281240","#522868"],"la":["#ffd84d","#ff5c8a","#ff9c3c"],"than":"#3c2448","nuoc":"#180820","nhan":"#ffd84d","nhan2":"#ff5c8a","hat":"#ffd84d"},
+        "loi-may": {"ten":"Lõi máy chủ","troi":["#0f5a50","#04141c"],"dat":["#0c2428","#103034"],"da":["#123438","#16404a","#0c282c","#1c4c50"],"la":["#4dffb0","#a8ff5c","#5cc8ff"],"than":"#1c3c3c","nuoc":"#02100e","nhan":"#4dffb0","nhan2":"#5cc8ff","hat":"#4dffb0"}
+      },
+      "nhan_vat": {"ten":"Vi","dang":"robot","than":"#d8dcf0","mat":"#15152c","ao":"#7a4cff","quan":"#24244a","phu":"#35e6ff","mu":"ang-ten","deo":"khong"},
+      "phu_mau": {"ten":"Nhiễu","dang":"quai","than":"#301848","mat":"#ff4fd8","ao":"#201030","quan":"#100820","phu":"#ff4fd8","mu":"khong","deo":"khong"}
+    },
+    "pixel-16bit": {
+      "ten": "Pixel 16-bit",
+      "goi": ["pixel","16-bit","16bit","8-bit","nhìn ngang"],
+      "nhom": "game",
+      "mo_ta": "Nhìn ngang, điểm ảnh to, ít màu, đồi nhiều lớp. Hợp hài nhanh, hành trình, kiểu lên cấp.",
+      "luoi": "khac",
+      "canh": "diem-anh",
+      "kieu": "diem-anh",
+      "hinh": "hop",
+      "suong": [62,130],
+      "chieu": "ngang",
+      "phan_giai": 0.3,
+      "hau": {"diem_anh":true},
+      "nhac": "8-bit",
+      "boi_canh": {
+        "dong-hoa": {"ten":"Đồng hoa tím","troi":["#ffe0c0","#7c8ce0"],"dat":["#b07cd8","#a06cc8"],"da":["#6c4c8c","#7c5c9c","#8c9cd0","#a8b0e0"],"la":["#e8709c","#f0a0b8","#c4c8ec"],"than":"#5c3c5c","nuoc":"#4060b0","nhan":"#fff8f0","nhan2":"#f0a040","hat":"#fff0a0"},
+        "hang-ngoc": {"ten":"Hang ngọc","troi":["#38507c","#141830"],"dat":["#40b0a0","#38a090"],"da":["#384868","#445878","#2c3858","#243050"],"la":["#60e0c0","#90f0d0","#1c2848"],"than":"#506080","nuoc":"#102038","nhan":"#d0f0f0","nhan2":"#f0c040","hat":"#90f0d0"},
+        "chieu-tan": {"ten":"Chiều tàn","troi":["#ffb060","#803870"],"dat":["#e0a050","#d09040"],"da":["#804040","#904c48","#a05868","#b06c80"],"la":["#f0d060","#d06040","#983c70"],"than":"#603030","nuoc":"#582050","nhan":"#fff0c0","nhan2":"#4090a0","hat":"#ffe090"}
+      },
+      "nhan_vat": {"ten":"Bit","dang":"vien","than":"#f0a040","mat":"#282040","ao":"#4090a0","quan":"#282040","phu":"#fff0a0","mu":"khan-dau","deo":"khan"},
+      "phu_mau": {"ten":"Lỗi","dang":"quai","than":"#484068","mat":"#f06080","ao":"#383058","quan":"#201c38","phu":"#f06080","mu":"khong","deo":"khong"}
+    },
+    "dat-set": {
+      "ten": "Đất sét",
+      "goi": ["đất sét","clay","claymation","tĩnh vật"],
+      "nhom": "chat-lieu",
+      "mo_ta": "Khối mềm có vết nặn, chuyển động giật 12 khung/giây. Hợp hài, thiếu nhi, bài học đời sống.",
+      "luoi": "khac",
+      "canh": "dat-set",
+      "kieu": "dat-set",
+      "hinh": "bo",
+      "suong": [34,92],
+      "giat": 12,
+      "nhac": "vui",
+      "boi_canh": {
+        "doi-kem": {"ten":"Đồi kem","troi":["#fbe8cf","#8fc3d6"],"dat":["#8dbb62","#7dab56"],"da":["#d9825f","#e8b45c","#9c78b5","#6fa8a0"],"la":["#4f9460","#e2707c","#f0c050"],"than":"#96603f","nuoc":"#4f8fb0","nhan":"#fff4e2","nhan2":"#d9544d","hat":"#fff4c8"},
+        "vuon-dao": {"ten":"Vườn đào","troi":["#ffeadf","#e09cac"],"dat":["#c9a06c","#bd9460"],"da":["#e58f86","#f2b8a0","#b86f78","#a4b86c"],"la":["#f0909c","#f8b8bc","#7c9c58"],"than":"#7c5040","nuoc":"#88b8b0","nhan":"#fff6ec","nhan2":"#b85070","hat":"#ffd8dc"},
+        "bai-bien": {"ten":"Bãi biển","troi":["#e8f6f0","#4c9cc4"],"dat":["#efd09c","#e4c48c"],"da":["#4cb0a8","#f08c5c","#f0c860","#6c8cc0"],"la":["#3c9c78","#f08c5c","#80c090"],"than":"#a06c48","nuoc":"#2c88b0","nhan":"#fffaf0","nhan2":"#e8604c","hat":"#ffffff"}
+      },
+      "nhan_vat": {"ten":"Bột","dang":"nguoi","than":"#f2b48c","mat":"#3c2828","ao":"#4f8fb0","quan":"#5c4438","phu":"#f0c050","mu":"non","deo":"khong"},
+      "phu_mau": {"ten":"Nhão","dang":"thu","than":"#9c78b5","mat":"#f4e0f0","ao":"#d9544d","quan":"#4c3858","phu":"#f0c050","mu":"tai","deo":"khong"}
+    },
+    "giay-gap": {
+      "ten": "Giấy gấp thủ công",
+      "goi": ["giấy","giấy gấp","origami","papercraft","cổ tích"],
+      "nhom": "chat-lieu",
+      "mo_ta": "Mặt giấy có thớ, nếp gấp, núi cắt nhiều lớp. Hợp cổ tích, lịch sử, truyện cảm động.",
+      "luoi": "khac",
+      "canh": "giay",
+      "kieu": "giay",
+      "hinh": "hop",
+      "suong": [34,96],
+      "hau": {"vien_toi":0.16},
+      "nhac": "am",
+      "boi_canh": {
+        "co-tich": {"ten":"Cổ tích","troi":["#f8ecd8","#a8c4c8"],"dat":["#c8d4a0","#b8c490"],"da":["#d8b48c","#b89c94","#98a8a8","#788c94"],"la":["#789c70","#d88c74","#e8c474"],"than":"#9c7458","nuoc":"#88acb8","nhan":"#fffaf0","nhan2":"#c86858","hat":"#ffffff"},
+        "su-cu": {"ten":"Trang sử cũ","troi":["#f0e0c0","#b89c78"],"dat":["#d8bc8c","#ccb080"],"da":["#c0a078","#a88c6c","#907860","#786450"],"la":["#8c8058","#a85c44","#c89c58"],"than":"#705440","nuoc":"#a0927c","nhan":"#f8eedc","nhan2":"#98483c","hat":"#f8e8c0"},
+        "dem-sao": {"ten":"Đêm sao","troi":["#b0a8d8","#2c3058"],"dat":["#8c98c0","#7c88b0"],"da":["#6870a0","#586090","#485080","#383c68"],"la":["#e8c878","#a0b8d8","#d898b8"],"than":"#50486c","nuoc":"#303c68","nhan":"#f4f0ff","nhan2":"#e0a850","hat":"#fff0b0"}
+      },
+      "nhan_vat": {"ten":"Mây","dang":"nguoi","than":"#f0c8a4","mat":"#403038","ao":"#c86858","quan":"#485068","phu":"#f0d8a0","mu":"non-la","deo":"khan"},
+      "phu_mau": {"ten":"Hạc","dang":"thu","than":"#f4f0ea","mat":"#d8c8b8","ao":"#788c94","quan":"#504850","phu":"#c86858","mu":"tai","deo":"khong"}
+    },
+    "sa-ban": {
+      "ten": "Sa bàn thu nhỏ",
+      "goi": ["sa bàn","thu nhỏ","mô hình","isometric","miniature"],
+      "nhom": "chat-lieu",
+      "mo_ta": "Nhìn chéo từ trên như mô hình trên bàn, mờ hai mép. Hợp giải thích, kinh doanh, trận đánh.",
+      "luoi": "khac",
+      "canh": "sa-ban",
+      "kieu": "sa-ban",
+      "hinh": "hop",
+      "suong": [80,150],
+      "chieu": "cheo",
+      "hau": {"mo_mep":true},
+      "nhac": "phieu-luu",
+      "boi_canh": {
+        "thi-tran": {"ten":"Thị trấn","troi":["#e8e0d0","#9cb4c0"],"dat":["#88a860","#7c9c58"],"da":["#a08468","#8c7058","#5c5c60","#78685c"],"la":["#c85848","#48784c","#e0b048"],"than":"#705038","nuoc":"#7890a0","nhan":"#f4f0e4","nhan2":"#3c6c9c","hat":"#ffffff"},
+        "chien-dia": {"ten":"Chiến địa","troi":["#d8ccb0","#8c8c78"],"dat":["#a89c68","#9c905c"],"da":["#8c7050","#786044","#8c7c60","#685844"],"la":["#58683c","#8c4438","#74804c"],"than":"#5c4834","nuoc":"#5c584c","nhan":"#e0d4b8","nhan2":"#a03c30","hat":"#e0d4b8"},
+        "cang-tuyet": {"ten":"Cảng tuyết","troi":["#eaf2f8","#88a4c0"],"dat":["#e8eef2","#dce4ea"],"da":["#8c94a0","#788490","#5c6470","#687080"],"la":["#38685c","#c05048","#4c88a8"],"than":"#6c5444","nuoc":"#385c80","nhan":"#fffdf6","nhan2":"#d05840","hat":"#ffffff"}
+      },
+      "nhan_vat": {"ten":"Phố","dang":"nguoi","than":"#f0b890","mat":"#383030","ao":"#d8483c","quan":"#283c5c","phu":"#f4d060","mu":"non","deo":"balo"},
+      "phu_mau": {"ten":"Bạn","dang":"nguoi","than":"#c88c64","mat":"#302828","ao":"#3c78b0","quan":"#383840","phu":"#f4f0e4","mu":"vanh","deo":"khong"}
+    },
+    "len-ni": {
+      "ten": "Len nỉ",
+      "goi": ["len","nỉ","len nỉ","thú bông","felt"],
+      "nhom": "chat-lieu",
+      "mo_ta": "Thú bông, sợi xù, đường chỉ may, cúc áo, màu ấm. Hợp thiếu nhi, chữa lành, chuyện động vật.",
+      "luoi": "khac",
+      "canh": "len",
+      "kieu": "len",
+      "hinh": "bo",
+      "suong": [34,92],
+      "nhac": "am",
+      "boi_canh": {
+        "phong-am": {"ten":"Đồi len ấm","troi":["#fbe6cc","#d09c84"],"dat":["#a8b878","#98a868"],"da":["#d88c6c","#e8b470","#b87868","#c8a088"],"la":["#c86858","#e8b048","#788c5c"],"than":"#8c5c40","nuoc":"#986858","nhan":"#fff4e0","nhan2":"#b85048","hat":"#fff0d0"},
+        "keo-sua": {"ten":"Sữa dâu","troi":["#fff0f4","#c0b0e0"],"dat":["#b8dcc8","#a8ccb8"],"da":["#f0b0c0","#c8b4e4","#f4d8a0","#a8c8e0"],"la":["#f098b0","#f0d488","#98c8b0"],"than":"#b08878","nuoc":"#98b8d0","nhan":"#fffafc","nhan2":"#d87898","hat":"#ffffff"},
+        "dem-ngu": {"ten":"Đêm ru ngủ","troi":["#8c88b8","#2c2c54"],"dat":["#68709c","#5c6490"],"da":["#504c80","#60589c","#787cb0","#443c6c"],"la":["#e0c070","#9c88c8","#70a0b0"],"than":"#54446c","nuoc":"#282c50","nhan":"#f0ecff","nhan2":"#e0b060","hat":"#fff0b0"}
+      },
+      "nhan_vat": {"ten":"Nhím","dang":"thu","than":"#c08c64","mat":"#fff0dc","ao":"#c85848","quan":"#5c4034","phu":"#e8b048","mu":"tai","deo":"khan"},
+      "phu_mau": {"ten":"Bông","dang":"thu","than":"#f0dcd0","mat":"#fffaf4","ao":"#788cb0","quan":"#7c6058","phu":"#f098b0","mu":"tai","deo":"khong"}
+    }
+  },
+  "dang": ["thu","robot","vien","nguoi","quai"],
+  "mu": ["khong","tai","non","ang-ten","vanh","trum","khan-dau","non-la"],
+  "deo": ["khong","khan","balo"],
+  "moc": ["thap","nha","cong"],
+  "hanh_dong": ["dung","nhin","noi","di","chay","nhay","leo","xay","dao","nga","mung"],
+  "may": ["toan","can","doi","ngang","theo","vut","tren"],
+  "cho": {"xuat-phat":-11,"nua-duong":-8.1,"mep":-5.2,"giua":0,"ben-kia":5.2,"dich":8},
+  "su_kien": ["cau","sang"],
+  "mat_bang": {"vuc":"Vực và cầu","ham":"Đường hầm","leo":"Leo bậc lên cao","dau-truong":"Đấu trường"},
+  "phu": {"vang":"Không có mặt","theo":"Đi cùng","duoi":"Đuổi phía sau","doi-dien":"Đứng đối diện"},
+  "noi": ["chinh","phu"],
+  "phu_de": {"cum":"Cụm từ","tung-tu":"Từng từ nhảy theo giọng","khong":"Không chữ"},
+  "the_loai": {"sinh-ton":{"ten":"Sinh tồn","phong_cach":["sandbox-khoi","low-poly","kinh-di-retro"],"mat_bang":["vuc","ham","leo"],"mo":"that-bai","ket":"cu-lat"},"thu-thach":{"ten":"Thử thách","phong_cach":["do-choi-nhua","pixel-16bit","neon"],"mat_bang":["leo","vuc","dau-truong"],"mo":"ket-qua","ket":"vong-lap"},"kinh-di":{"ten":"Kinh dị","phong_cach":["kinh-di-retro","sandbox-khoi","giay-gap"],"mat_bang":["ham","vuc"],"mo":"cau-hoi","ket":"cu-lat"},"hai":{"ten":"Hài","phong_cach":["dat-set","pixel-16bit","do-choi-nhua"],"mat_bang":["dau-truong","vuc"],"mo":"that-bai","ket":"cu-lat"},"bai-hoc":{"ten":"Bài học, cảm động","phong_cach":["giay-gap","len-ni","dat-set"],"mat_bang":["leo","vuc"],"mo":"cau-hoi","ket":"bai-hoc"},"giai-thich":{"ten":"Giải thích","phong_cach":["sa-ban","neon","low-poly"],"mat_bang":["dau-truong","leo"],"mo":"cau-hoi","ket":"bai-hoc"}},
+  "mo": {"that-bai":"Mở bằng thất bại","cau-hoi":"Mở bằng câu hỏi","ket-qua":"Mở bằng kết quả"},
+  "ket": {"cu-lat":"Kết bằng cú lật","vong-lap":"Kết nối về đầu","bai-hoc":"Kết bằng bài học"},
+  "do_dai": [15,30,45,60],
+  "toc_do": {"vi":3.6,"en":2.5,"khac":2.6}
+}

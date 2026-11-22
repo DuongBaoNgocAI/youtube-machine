@@ -1,5 +1,13 @@
 # Nhật ký thay đổi
 
+## 1.1.0 (2026-11-23)
+- Skill mới `yt-07k-khoi-vuong`: làm Shorts dọc 3D từ kịch bản hoặc SRT, dựng ngay trên máy bằng trình duyệt, không tốn tín dụng hình.
+- Chọn 1 trong 10 phong cách trước khi làm: khối pixel, đồ chơi nhựa vượt ải, kinh dị retro, low-poly phiêu lưu, neon tương lai, pixel 16-bit, đất sét, giấy gấp, sa bàn thu nhỏ, len nỉ.
+- Có 4 mặt bằng, nhân vật phụ, phụ đề chạy theo từng từ, nhạc và tiếng động tự tổng hợp. Hình và nhân vật tự thiết kế, không lấy của hãng game nào.
+- Cần Node 18 trở lên, ffmpeg, Chrome hoặc Edge. Không cần Blender hay Flow.
+- Skill đã làm 3 Shorts thật, trong đó có kinh dị retro và giấy gấp. Các phong cách còn lại mới chạy bản mẫu.
+- Cập nhật qua chat của bản 1.0.1 đã chạy thật với máy chủ: nâng 1.0.0 lên 1.0.1 đúng, giữ nguyên hồ sơ kênh.
+
 ## 1.0.1 (2026-11-23)
 - Cập nhật qua chat. Khi có bản mới, trợ lý báo ngay đầu phiên. Bạn nói "cập nhật YouTube Machine" là trợ lý tải đúng bản tài khoản của bạn được dùng rồi thay các file của bộ skill. Thư mục `channels/` giữ nguyên.
 - File cũ bị thay được chuyển vào `_thung-rac/cap-nhat-<bản cũ>-sang-<bản mới>-<giờ>/`. Bạn tự xóa khi không cần nữa.

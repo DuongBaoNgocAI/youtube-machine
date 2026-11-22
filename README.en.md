@@ -2,9 +2,9 @@
 
 **A start-to-finish workflow for building a YouTube channel, from zero to a published video, run by an AI assistant on your own computer.**
 
-Version 1.0.0 · Published by AI CỘNG VN · [Tiếng Việt](README.md)
+Version 1.1.0 · Published by AI CỘNG VN · [Tiếng Việt](README.md)
 
-YouTube Machine is a set of 27 skills for AI coding assistants that run on your machine. It works best with Claude Code. The skills take you through every step, from picking a niche to publishing a video and learning from real analytics. Before each step, the assistant asks you a few questions, so the channel ends up reflecting your own choices. Everything is saved in a per-channel folder, so you can pick up where you left off at any time.
+YouTube Machine is a set of 28 skills for AI coding assistants that run on your machine. It works best with Claude Code. The skills take you through every step, from picking a niche to publishing a video and learning from real analytics. Before each step, the assistant asks you a few questions, so the channel ends up reflecting your own choices. Everything is saved in a per-channel folder, so you can pick up where you left off at any time.
 
 > The skill content is served from a server through the **YTM Gateway** (Cổng YTM). This repository contains only the framework, tools and templates. To use it, you sign in with the Gmail account registered for YouTube Machine.
 >
@@ -43,6 +43,7 @@ YouTube Machine is a set of 27 skills for AI coding assistants that run on your 
 | Cut | Edits by transcript, removing bad takes, silences and filler words | `yt-07f-cat-theo-chu` |
 | Review | Runs technical checks and verifies the video keeps its promise before publishing | `yt-07x-soat` |
 | Shorts | Picks standalone moments, crops them vertical and adds subtitles | `yt-07r-shorts` |
+| 7k | Builds vertical 3D Shorts in 10 styles (pixel blocks, clay, papercraft, felt...) with no image credits | `yt-07k-khoi-vuong` |
 | Thumbnail | Places text correctly and checks it at small size | `yt-08t-thumbnail` |
 | 8 | Builds the SEO pack: 5 titles, description, chapters, tags, upload checklist | `yt-08-seo-publish` |
 | 9 | Covers the first 48 hours after publishing and what to do when views are low | `yt-09-post-publish` |
