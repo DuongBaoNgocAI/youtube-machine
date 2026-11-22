@@ -1,5 +1,14 @@
 # Nhật ký thay đổi
 
+## 1.0.1 (2026-11-23)
+- Cập nhật qua chat. Khi có bản mới, trợ lý báo ngay đầu phiên. Bạn nói "cập nhật YouTube Machine" là trợ lý tải đúng bản tài khoản của bạn được dùng rồi thay các file của bộ skill. Thư mục `channels/` giữ nguyên.
+- File cũ bị thay được chuyển vào `_thung-rac/cap-nhat-<bản cũ>-sang-<bản mới>-<giờ>/`. Bạn tự xóa khi không cần nữa.
+- Đã tự tải zip ở trang YouTube Machine thì nói "cập nhật YouTube Machine từ file zip" kèm đường dẫn file.
+- Đầu phiên báo đúng bản đang cài trên máy. Bản 1.0.0 có thể báo "đã cập nhật" khi chỉ nội dung skill trên máy chủ đổi, còn gói trên máy vẫn là bản cũ.
+- Riêng bản này phải tải bằng tay một lần, vì gói 1.0.0 chưa có lệnh cập nhật. Từ 1.0.1 trở đi chỉ cần nói với trợ lý.
+- Hướng dẫn cài gộp vào `README.md`, bỏ file `HUONG-DAN-CAI.md`. Thêm `README.en.md` bản tiếng Anh.
+- Cập nhật qua chat đã thử trên Windows với máy chủ thử, chưa chạy với máy chủ thật.
+
 ## 1.0.0 (2026-11-21)
 - Nội dung skill chuyển lên máy chủ. Trợ lý đọc skill qua Cổng YTM (`tools/ytm-cong.mjs`), một máy chủ MCP chạy trên máy bạn. Gói cài chỉ còn skill giữ chỗ, script và mẫu.
 - Lần đầu trên mỗi máy, đăng nhập bằng Gmail đã đăng ký: trợ lý mở trang chọn tài khoản Google, bạn bấm chọn, xong. Không có mã phải nhập, trợ lý không thấy mật khẩu.

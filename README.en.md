@@ -121,8 +121,12 @@ Run `node tools/do-may.mjs` to see whether your machine suits the Blender or the
 
 ## Updating
 
-- git: run `git pull` in the folder.
-- zip: download the new version and copy it over your folder. Your `channels/` folder is kept, but back it up first.
+When a new version is out, the assistant tells you at the start of a session. Just say "update YouTube Machine".
+
+- The assistant runs `node tools/cap-nhat.mjs`, downloads the version your account is entitled to, and replaces the toolkit files. Your `channels/` folder is kept.
+- Replaced files are moved to `_thung-rac/cap-nhat-<old>-sang-<new>-<time>/`. Delete them yourself when you no longer need them.
+- Already downloaded the zip from the YouTube Machine page? Say "update YouTube Machine from the zip file" with its path.
+- Version 1.0.0 has no update command. For the first update, download the zip from the Downloads section and copy it over your folder. After that, just ask the assistant.
 
 Your channel data in `channels/` is listed in `.gitignore` and is never committed. The change log is in [CHANGELOG.md](CHANGELOG.md).
 

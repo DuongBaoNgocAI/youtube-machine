@@ -6,6 +6,7 @@
 //   claude mcp add ytm -- node tools/ytm-cong.mjs
 // Thử tay:  node tools/ytm-cong.mjs --thu [--dang-nhap] [--danh-sach] [--doc <đường dẫn> [trang]]
 //           node tools/ytm-cong.mjs --phien-ban   in JSON bản được dùng (tools/phien-ban.mjs gọi), không mở trình duyệt
+//           node tools/ytm-cong.mjs --goi         in JSON có link tải tạm gói zip (tools/cap-nhat.mjs gọi)
 //
 // Công cụ: ytm_dang_nhap, ytm_trang_thai, ytm_danh_sach, ytm_doc.
 // Node 18 trở lên, không cần cài thêm thư viện.
@@ -520,6 +521,15 @@ if (process.argv.includes("--phien-ban")) {
       const q = j.quyen ?? {};
       ra = { dang_nhap: true, email: j.email, nguon: q.nguon, phien_ban: q.phien_ban, ban_moi_nhat: q.ban_moi_nhat, han_cap_nhat: q.han_cap_nhat };
     } else ra = { dang_nhap: status !== 401, loi: j.loi };
+  }
+  process.stdout.write(JSON.stringify(ra) + "\n");
+  process.exit(0);
+} else if (process.argv.includes("--goi")) {
+  // Cho tools/cap-nhat.mjs: in JSON có link tải tạm gói zip của bản được dùng. Không mở trình duyệt.
+  let ra = { loi: "chua-dang-nhap", thong_bao: "Chưa đăng nhập Cổng YTM. Gọi ytm_dang_nhap trước." };
+  if (phien) {
+    const { status, j } = await goiHam("goi");
+    ra = status === 200 ? j : { loi: j.loi ?? `loi-${status}`, thong_bao: j.thong_bao ?? `Máy chủ trả lỗi ${status}.` };
   }
   process.stdout.write(JSON.stringify(ra) + "\n");
   process.exit(0);

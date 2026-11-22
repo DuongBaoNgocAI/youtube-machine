@@ -166,10 +166,14 @@ Dữ liệu kênh trong `channels/` đã nằm trong `.gitignore`, nên không b
 
 ## Cập nhật
 
-- Cài bằng git: chạy `git pull` tại thư mục.
-- Cài bằng zip: tải bản mới, chép đè vào thư mục đang dùng. Thư mục `channels/` vẫn giữ nguyên, nhưng nên sao lưu trước khi chép.
+Khi có bản mới, trợ lý báo ngay đầu phiên. Bạn chỉ cần nói với trợ lý: "cập nhật YouTube Machine".
 
-Lần mở sau, trợ lý báo bạn đang ở bản nào và bản đó có gì mới. Danh sách thay đổi ở [CHANGELOG.md](CHANGELOG.md).
+- Trợ lý chạy `node tools/cap-nhat.mjs`, tải đúng bản tài khoản của bạn được dùng, rồi thay các file của bộ skill. Thư mục `channels/` và hồ sơ kênh giữ nguyên.
+- File cũ bị thay được chuyển vào `_thung-rac/cap-nhat-<bản cũ>-sang-<bản mới>-<giờ>/`. Bạn tự xóa khi không cần nữa.
+- Đã tự tải file zip ở trang YouTube Machine thì nói: "cập nhật YouTube Machine từ file zip <đường dẫn>".
+- Gói 1.0.0 chưa có lệnh này. Lần đầu lên bản mới, tải zip ở mục Tải về rồi chép đè vào thư mục đang dùng. Từ đó trở đi chỉ cần nói với trợ lý.
+
+Cập nhật xong, trợ lý báo bạn đang ở bản nào và bản đó có gì mới. Danh sách thay đổi ở [CHANGELOG.md](CHANGELOG.md).
 
 ## Nguyên tắc
 

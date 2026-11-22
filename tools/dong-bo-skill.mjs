@@ -37,7 +37,9 @@ const phan = [
   "Bản cho chatbot không đọc được thư mục.",
   "Tự động tạo từ .claude/skills. Mỗi mục `## FILE:` là một file. Khi skill nói đọc một đường dẫn, tìm mục có đường dẫn đó.",
 ];
-for (const s of skills) {
+// Skill ghi "phat_hanh: chua" vẫn chép cho trợ lý trên máy người bán, nhưng không vào gói chatbot.
+const chuaPhat = (s) => /^phat_hanh:\s*chua\s*$/m.test(fs.readFileSync(path.join(GOC, s, "SKILL.md"), "utf8").split(/\r?\n# /)[0]);
+for (const s of skills.filter((s) => !chuaPhat(s))) {
   for (const p of tepVanBan(path.join(GOC, s))) {
     phan.push(`\n\n## FILE: ${p.split(path.sep).join("/")}\n\n${fs.readFileSync(p, "utf8")}`);
   }

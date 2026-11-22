@@ -21,6 +21,10 @@ Mọi file skill đọc bằng `ytm_doc`, đường dẫn tính từ thư mục 
 
 Sau khi đăng nhập xong, chạy `node tools/phien-ban.mjs`. Lệnh in ra chữ thì báo nguyên văn cho người dùng, không in gì thì đi tiếp. Chưa có Node.js thì đọc `PHIEN-BAN.json`, báo tên, phiên bản, nhóm hỗ trợ, và chỉ tới mục "Cài đặt" trong `README.md`.
 
+## Cập nhật bản mới
+
+Người dùng nói "cập nhật", "cập nhật YouTube Machine", "lên bản mới", "update": chạy `node tools/cap-nhat.mjs` rồi báo nguyên văn lời lệnh in ra. Lệnh tự hỏi máy chủ bản được dùng, tải gói, thay file của gói và giữ nguyên `channels/`. Muốn chỉ xem có bản mới không thì thêm `--kiem`. Người dùng đã tự tải zip thì chạy `node tools/cap-nhat.mjs --tu-zip <đường dẫn file zip>`. Lệnh báo chưa đăng nhập thì gọi `ytm_dang_nhap` rồi chạy lại. Không tự tải zip, giải nén hay chép đè bằng cách khác.
+
 Người dùng muốn làm bất cứ việc gì về kênh YouTube ("xây kênh", "tiếp tục kênh X", "viết kịch bản", "dựng video"): đọc `ytm_doc("youtube-machine/SKILL.md")` và làm theo. Skill con đọc bằng `ytm_doc("<tên>/SKILL.md")`. Nhắc tới một skill nghĩa là đọc file đó rồi làm theo.
 
 Các công cụ nhắc tên trong skill là cách làm trên Claude Code. Trợ lý khác đọc `ytm_doc("youtube-machine/references/tuong-thich-ai.md")` để biết năng lực tương ứng và làm gì khi thiếu công cụ.
