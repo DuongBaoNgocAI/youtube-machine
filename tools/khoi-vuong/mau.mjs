@@ -54,6 +54,36 @@ const TRUYEN = {
   ],
 }
 
+// Bộ diễn xuất: cùng một vở 15 giây cho mọi phong cách, lời riêng theo không khí từng phong cách.
+// Thứ lạ hiện ở bên phải (su_kien hien), nhân vật giật mình, vẫy thử, nhảy lùi rồi chạy sang trái.
+const LOI_DIEN = {
+  'khoi-dien': ['Hầm ngục này im quá.', 'Có ai ở đây không?', 'Đi thêm vài bước nữa.', 'Một đôi mắt đỏ hiện ra!', 'Chào... bạn?', 'Không phải bạn rồi!', 'Chạy!', 'Nó vẫn còn đó.'],
+  'bong-den': ['Rừng đêm nay đặc sương.', 'Tiếng gì vậy?', 'Đi theo ánh sáng kia.', 'Một bóng cao bỗng hiện ra!', 'Ai đó?', 'Nó tiến lại gần!', 'Chạy khỏi đây!', 'Sương khép lại sau lưng.'],
+  'que-neon': ['Một ngày bình thường.', 'Nhưng đầu cứ nghĩ mãi.', 'Bước tiếp thôi.', 'Nỗi lo bỗng hiện ra!', 'Chào nỗi lo.', 'Không, lùi lại đã!', 'Chạy trốn cũng là một cách?', 'Hay ngồi lại mà nghĩ.'],
+  'roi-giay': ['Ngày xưa, ở bìa rừng.', 'Có một cậu bé tò mò.', 'Cậu đi về phía khu rừng.', 'Bỗng con sói hiện ra!', 'Cậu chào nó thật lễ phép.', 'Nhưng sói nhe nanh!', 'Cậu chạy một mạch về làng.', 'Và nghĩ mãi về chuyện ấy.'],
+  'diorama-toon': ['Một làng nhỏ, năm 1450.', 'Mọi người nhìn ra biển.', 'Ra bến xem có gì.', 'Một cánh buồm lạ xuất hiện!', 'Chào người lạ!', 'Khoan, họ mang vũ khí!', 'Về báo cả làng!', 'Lịch sử rẽ hướng từ đây.'],
+  'dat-set-studio': ['Sáng nay bàn làm việc yên ả.', 'Hình như thiếu gì đó.', 'Đi tìm cái bút.', 'Một con quái hiện ra!', 'Ờ... chào?', 'Nó há miệng!', 'Thôi chạy đã!', 'Hóa ra nó chỉ muốn cái bút.'],
+}
+export function kichBanDien(bang, ma, boiCanh, khung = 'ngang') {
+  const p = bang.phong_cach[ma], l = LOI_DIEN[ma] || LOI_DIEN['dat-set-studio']
+  return {
+    phong_cach: ma, boi_canh: boiCanh, khung, mat_bang: 'san-khau', fps: 30,
+    nhan_vat: p.nhan_vat,
+    phu_de: { kieu: 'tung-tu', mau: '#ffd84d' },
+    am: { nhac: p.nhac, tieng_dong: true },
+    canh: [
+      c(0, 2.4, l[0], 'dung', 'mep', 'mep', 'toan'),
+      c(2.4, 4.6, l[1], ma === 'que-neon' ? 'nghi' : 'nhin', 'mep', 'mep', 'can'),
+      c(4.6, 6.5, l[2], 'di', 'mep', 'giua', 'theo'),
+      c(6.5, 8.2, l[3], 'giat-minh', 'giua', 'giua', 'can', { su_kien: ['hien'], nhin_ve: 'phai' }),
+      c(8.2, 9.6, l[4], 'vay', 'giua', 'giua', 'ngang', { nhin_ve: 'phai' }),
+      c(9.6, 10.8, l[5], 'nhay', 'giua', 'mep', 'toan', { nhin_ve: 'phai' }),
+      c(10.8, 13, l[6], 'chay', 'mep', 'nua-duong', 'theo'),
+      c(13, 15, l[7], ma === 'que-neon' || ma === 'roi-giay' ? 'nghi' : 'run', 'nua-duong', 'nua-duong', 'can', { nhin_ve: 'phai' }),
+    ],
+  }
+}
+
 const MAT_BANG = { 'sandbox-khoi': 'vuc', 'do-choi-nhua': 'vuc', 'kinh-di-retro': 'ham', 'low-poly': 'leo', 'neon': 'ham', 'pixel-16bit': 'leo', 'dat-set': 'dau-truong', 'giay-gap': 'vuc', 'sa-ban': 'dau-truong', 'len-ni': 'vuc' }
 const MOC = { 'kinh-di-retro': 'nha', 'neon': 'cong', 'pixel-16bit': 'cong', 'dat-set': 'nha', 'len-ni': 'nha' }
 

@@ -1,5 +1,14 @@
 # Nhật ký thay đổi
 
+## 1.2.0 (2026-11-25)
+- Bước 7k có thêm nhóm 6 phong cách **diễn xuất**: Khối vuông diễn xuất, Bóng đen trong sương, Người que neon, Rối giấy 2,5D, Diorama low-poly, Đất sét diễn xuất. Nhân vật có tư thế thật, mặt đổi theo cảm xúc, miệng mấp máy theo mốc từ của giọng.
+- Video tự dựng ra được khung ngang 16:9, không chỉ Shorts dọc. Cùng một file cảnh dựng được cả hai khung; chữ, nét và hạt tự co theo khung.
+- 17 động tác (thêm giật mình, vẫy, run, chỉ, nghĩ, buồn, quay), 7 góc máy, 4 sự kiện (thứ lạ hiện ra rồi biến mất, bừng sáng, rung khung). Nhân vật phụ đi cùng, đuổi phía sau hoặc đứng đối diện để hai người nói chuyện.
+- Sửa khung hình ở bộ dựng dùng chung: cảnh toàn và cảnh bay giữ nhân vật trong khung; khung dọc có hai nhân vật hoặc có người ngã tự lùi đủ chỗ; khung dọc hạ tầm ngắm để không cắt chân; thứ lạ hiện đúng mép phải khung.
+- Skill `yt-07k-khoi-vuong` viết lại: chọn nhóm trước, bảng 16 phong cách; thêm `references/file-canh-dien.md` cho file cảnh của nhóm diễn xuất. Các bước 4b, 7c, 7e và bảng chọn phong cách ở skill tổng cập nhật theo.
+- Cả 6 phong cách đã dựng bản mẫu 16 giây ở 540p cả hai khung, có tờ khung để xem. Ở 1080p trên card rời RTX 3060 Ti, 15 giây video dựng dưới 20 giây; máy chỉ có CPU chậm hơn nhiều lần.
+- Còn là bản thử: mỗi phong cách một bối cảnh, mỗi video tối đa hai nhân vật, miệng chỉ mấp máy chứ không đúng khẩu hình, nhóm diễn xuất không có leo trèo.
+
 ## 1.1.0 (2026-11-23)
 - Skill mới `yt-07k-khoi-vuong`: làm Shorts dọc 3D từ kịch bản hoặc SRT, dựng ngay trên máy bằng trình duyệt, không tốn tín dụng hình.
 - Chọn 1 trong 10 phong cách trước khi làm: khối pixel, đồ chơi nhựa vượt ải, kinh dị retro, low-poly phiêu lưu, neon tương lai, pixel 16-bit, đất sét, giấy gấp, sa bàn thu nhỏ, len nỉ.

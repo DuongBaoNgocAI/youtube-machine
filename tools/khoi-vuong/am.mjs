@@ -67,9 +67,42 @@ function nhac(b, ten, dai) {
   }
 }
 
-function tiengDong(b, canh) {
+// Bộ diễn xuất: bước chân theo quãng đường (khớp web-dien/dien.js), thêm tiếng cho động tác cảm xúc.
+const CHO_DIEN = { 'xuat-phat': -11, 'nua-duong': -8.1, mep: -5.2, giua: 0, 'ben-kia': 5.2, dich: 8 }
+function tiengDien(b, c) {
+  const t = c.tu, d = c.den - c.tu, a = c.hanh_dong
+  if (a === 'di' || a === 'chay') {
+    const dai = Math.abs((CHO_DIEN[c.den_cho] ?? 0) - (CHO_DIEN[c.tu_cho] ?? 0)) * 0.264
+    const buoc = (a === 'chay' ? 1.15 : 0.72) / 2
+    // nghịch đảo đường cong tăng tốc nhẹ đầu, hãm cuối của dien.js
+    const nguoc = f => f < 0.05 ? f * 2 : f > 0.95 ? 0.9 + (f - 0.95) * 2 : 0.1 + (f - 0.05) * 0.8 / 0.9
+    for (let k = 1; k * buoc < dai; k++) {
+      const x = t + nguoc(k * buoc / dai) * d
+      on(b, x, 0.09, a === 'chay' ? 0.6 : 0.45, 0.18)
+      not(b, x, 0.08, u => 150 - 70 * u, a === 'chay' ? 0.18 : 0.14)
+    }
+  }
+  if (a === 'giat-minh') {
+    const x = t + Math.min(0.25, d * 0.15)
+    on(b, x, 0.5, 0.9, 0.05); not(b, x, 0.7, u => 90 - 40 * u, 0.5, 'sin', 2)
+    ;[61, 67, 73].forEach(n => not(b, x, 0.9, tanSo(n), 0.06, 'chuong', 3))
+  }
+  if (a === 'run') for (let x = t; x < c.den; x += 0.11) not(b, x, 0.1, 70, 0.05, 'sin', 4)
+  if (a === 'vay') [76, 79].forEach((n, i) => not(b, t + 0.2 + i * 0.16, 0.3, tanSo(n), 0.08, 'go'))
+  if (a === 'nghi') [72, 79, 84].forEach((n, i) => not(b, t + 0.3 + i * 0.22, 0.5, tanSo(n), 0.05, 'chuong'))
+  if (a === 'buon') not(b, t + 0.2, Math.min(1.5, d * 0.7), u => 330 - 120 * u, 0.08, 'sin', 1.5)
+  if (a === 'chi') not(b, t + 0.15 * d, 0.2, u => 500 + 400 * u, 0.06, 'sin', 3)
+  if (a === 'quay') on(b, t + 0.1, 0.25, 0.25, 0.4)
+  if ((c.su_kien || []).includes('hien')) { not(b, t, 1.6, u => 46 + 10 * u, 0.3, 'sin', 1.2); on(b, t, 1.2, 0.18, 0.02, 1.5) }
+}
+
+function tiengDong(b, canh, dien) {
   for (const c of canh) {
     const t = c.tu, d = c.den - c.tu, a = c.hanh_dong
+    if (dien) {
+      tiengDien(b, c)
+      if (a === 'di' || a === 'chay') continue
+    }
     // Cùng nhịp chân với khung.js
     if (a === 'di' || a === 'chay' || a === 'leo') {
       const nhip = Math.PI / (a === 'chay' ? 15 : a === 'leo' ? 7 : 9)
@@ -145,7 +178,7 @@ export function taoAm(kb, canh, dai) {
     nhac(b, ten, dai)
     for (let i = 0; i < b.length; i++) b[i] *= 0.75 * Math.min(1, i / (SR * 0.3), (b.length - i) / (SR * 0.6))
   }
-  if (coTieng) tiengDong(b, canh)
+  if (coTieng) tiengDong(b, canh, kb.mat_bang === 'san-khau')
   if (coTieng && (kb.mua || kb.boi_canh === 'do-thi-mua')) tiengMua(b, kb.mua || {}, dai)
   if (!coNhac && !coTieng) return null
   if (!b.some(v => v)) return null // toàn lặng thì bỏ track, loudnorm gặp lặng sẽ ra NaN

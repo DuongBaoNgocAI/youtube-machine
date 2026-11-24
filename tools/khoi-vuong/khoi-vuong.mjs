@@ -17,11 +17,13 @@ import crypto from 'crypto'
 import { fileURLToPath } from 'url'
 import { spawn, spawnSync } from 'child_process'
 import { taoAm, KHONG_KHI } from './am.mjs'
-import { kichBanMau } from './mau.mjs'
+import { kichBanMau, kichBanDien } from './mau.mjs'
 
 const DAY = path.dirname(fileURLToPath(import.meta.url))
-const WEB = path.join(DAY, 'web')
+// Hai bộ dựng: web/ (khối, Shorts dọc) và web-dien/ (diễn xuất, ngang hoặc dọc)
+const BO_DUNG = { khoi: 'web', dien: 'web-dien' }
 const BANG = JSON.parse(fs.readFileSync(path.join(DAY, 'phong-cach.json'), 'utf8'))
+const laDien = ma => BANG.phong_cach[ma]?.bo_dung === 'dien'
 const docJson = f => JSON.parse(fs.readFileSync(f, 'utf8').replace(/^﻿/, ''))
 
 class Loi extends Error {}
@@ -135,6 +137,57 @@ function phanCanh(dong, kb) {
   })
 }
 
+// Bộ diễn xuất: thêm các động tác cảm xúc, đi lại trên một sân khấu ngang.
+const TU_KHOA_DIEN = [
+  ['giat-minh', 'giật mình|hoảng hốt|hoảng|hét lên|thét|startled|screams?|screamed|gasps?|gasped'],
+  ['run', 'run rẩy|run lên|sợ hãi|khiếp|tremble[sd]?|shiver(?:s|ed)?|terrified|scared|afraid'],
+  ['vay', 'vẫy|chào|waves?|waved|greets?|greeted|hello'],
+  ['chi', 'chỉ tay|chỉ vào|kìa|points?|pointed'],
+  ['nghi', 'nghĩ|suy nghĩ|tự hỏi|thắc mắc|tại sao|vì sao|thinks?|thought|wonders?|wondered|why'],
+  ['buon', 'buồn|khóc|thất vọng|cô đơn|sad|cries|cried|crying|alone|lonely'],
+  ['quay', 'quay lại|quay người|ngoảnh|turns? around|turned around'],
+].map(([k, r]) => [k, new RegExp(`(?<![\\p{L}])(?:${r})(?![\\p{L}])`, 'iu')])
+const HIEN = /(?<![\p{L}])(?:xuất hiện|hiện ra|bỗng|đột nhiên|bất ngờ|appears?|appeared|suddenly)(?![\p{L}])/iu
+const THANG = /(?<![\p{L}])(?:thắng|thành công|sống sót|an toàn|wins?|won|survived|safe|finally)(?![\p{L}])/iu
+
+function doanViecDien(chu) {
+  let hay = null
+  for (const [viec, re] of [...TU_KHOA_DIEN, ...TU_KHOA]) {
+    const m = re.exec(chu)
+    if (!m || PHU_DINH.test(chu.slice(0, m.index))) continue
+    if (!hay || m.index < hay.vt) hay = { viec, vt: m.index }
+  }
+  const v = hay ? hay.viec : 'dung'
+  return v === 'leo' ? 'di' : v
+}
+
+function phanCanhDien(dong, kb) {
+  const thu = ['mep', 'giua', 'ben-kia', 'giua']
+  const may = { dung: ['toan', 'can'], noi: ['can', 'ngang'], nhin: ['can', 'theo'], di: ['theo', 'toan', 'ngang'], chay: ['theo', 'ngang'], nhay: ['ngang', 'toan'], nga: ['ngang', 'toan'], mung: ['vut', 'toan'], xay: ['ngang', 'can'], dao: ['ngang', 'can'], 'giat-minh': ['can', 'ngang'], vay: ['theo', 'can'], run: ['can', 'ngang'], chi: ['ngang', 'can'], nghi: ['can', 'theo'], buon: ['can', 'tren'], quay: ['ngang', 'can'] }
+  const vp = kb.nhan_vat_phu
+  let o = 'mep', b = 0, truoc = ''
+  return dong.map((d, i) => {
+    let viec = doanViecDien(d.chu)
+    const su_kien = []
+    if (HIEN.test(d.chu)) su_kien.push('hien')
+    if (i === dong.length - 1 && i > 0 && THANG.test(d.chu)) { viec = 'mung'; su_kien.push('sang') }
+    let toi = o
+    if (['di', 'chay'].includes(viec)) { do toi = thu[(b = (b + 1) % thu.length)]; while (toi === o) }
+    let phu, noi
+    if (vp) {
+      phu = DOI_THU.test(d.chu) ? 'duoi' : viec === 'noi' ? 'doi-dien' : vp.dang === 'quai' ? 'vang' : 'theo'
+      if (viec === 'noi') noi = d.chu.toLowerCase().startsWith((vp.ten || '\u0000').toLowerCase()) ? 'phu' : 'chinh'
+    }
+    const gocMay = phu === 'doi-dien' ? ['doi', 'can'] : may[viec] || ['toan', 'can']
+    const ds = i === 0 ? ['toan', ...gocMay] : gocMay
+    const m = ds.find(x => x !== truoc) || ds[0]
+    truoc = m
+    const c = { ...d, hanh_dong: viec, tu_cho: o, den_cho: toi, may: m, su_kien, ...(phu && { phu }), ...(noi && { noi }) }
+    o = toi
+    return c
+  })
+}
+
 function chuanGio(canh) {
   return canh.map((c, i) => ({ ...c, tu: i ? c.tu : 0, den: i < canh.length - 1 ? canh[i + 1].tu : c.den }))
 }
@@ -144,6 +197,8 @@ function kiem(kb) {
   const loi = [], nhac = []
   const pc = BANG.phong_cach[kb.phong_cach]
   if (!pc) return { loi: [`phong_cach không hợp lệ: ${kb.phong_cach}`], nhac }
+  if (laDien(kb.phong_cach)) return kiemDien(kb, pc)
+  if (kb.khung && kb.khung !== 'doc') loi.push(`${pc.ten} chỉ có khung dọc. Khung ngang dùng các phong cách nhóm diễn xuất`)
   if (!pc.boi_canh[kb.boi_canh]) loi.push(`boi_canh phải là một trong: ${Object.keys(pc.boi_canh).join(', ')}`)
   if (kb.mua && !pc.boi_canh[kb.boi_canh]?.pho) loi.push('mua chỉ dùng với bối cảnh đô thị mưa (do-thi-mua)')
   if (!BANG.moc.includes(kb.moc)) loi.push(`moc phải là một trong: ${BANG.moc.join(', ')}`)
@@ -208,6 +263,67 @@ function kiem(kb) {
   return { loi, nhac }
 }
 
+// ---- Kiểm bộ diễn xuất ----
+function kiemDien(kb, pc) {
+  const loi = [], nhac = [], MAU = /^#[0-9a-f]{6}$/i
+  if (!pc.boi_canh[kb.boi_canh]) loi.push(`boi_canh phải là một trong: ${Object.keys(pc.boi_canh).join(', ')}`)
+  if (!pc.khung.includes(kb.khung || 'ngang')) loi.push(`khung phải là một trong: ${pc.khung.join(', ')}`)
+  if (kb.mat_bang && kb.mat_bang !== 'san-khau') loi.push('Phong cách diễn xuất chỉ có mat_bang san-khau')
+  if (!Number.isInteger(kb.fps) || kb.fps < 12 || kb.fps > 60) loi.push('fps phải từ 12 tới 60')
+  for (const ten of kb.nhan_vat_phu ? ['nhan_vat', 'nhan_vat_phu'] : ['nhan_vat']) {
+    const nv = kb[ten] || {}
+    for (const k of ['than', 'mat', 'ao', 'quan', 'phu']) if (!MAU.test(nv[k] || '')) loi.push(`${ten}.${k} phải là màu #rrggbb`)
+    if (nv.dang && !BANG.dang.includes(nv.dang)) loi.push(`${ten}.dang phải là một trong: ${BANG.dang.join(', ')}`)
+  }
+  const pd = kb.phu_de || { kieu: 'cum' }
+  if (!BANG.phu_de[pd.kieu]) loi.push(`phu_de.kieu phải là một trong: ${Object.keys(BANG.phu_de).join(', ')}`)
+  if (pd.mau && !MAU.test(pd.mau)) loi.push('phu_de.mau phải là màu #rrggbb')
+  if (pd.moi !== undefined && !(Number.isInteger(pd.moi) && pd.moi >= 2 && pd.moi <= 9)) loi.push('phu_de.moi phải là số chữ mỗi cụm, từ 2 tới 9')
+  const nh = kb.am?.nhac || 'khong'
+  if (nh !== 'khong' && !KHONG_KHI[nh]) loi.push(`am.nhac phải là một trong: khong, ${Object.keys(KHONG_KHI).join(', ')}`)
+  for (const k of ['the_loai', 'mo', 'ket']) if (kb[k] && !BANG[k][kb[k]]) loi.push(`${k} phải là một trong: ${Object.keys(BANG[k]).join(', ')}`)
+  if (pc.khong_tre_em) nhac.push(`${pc.ten} không hợp video dành cho trẻ em`)
+  if (!Array.isArray(kb.canh) || !kb.canh.length) return { loi: [...loi, 'Chưa có cảnh nào'], nhac }
+
+  const doc = (kb.khung || 'ngang') === 'doc', HS = 0.264
+  let truoc = null, hien = false
+  kb.canh.forEach((c, i) => {
+    const o = `Cảnh ${i + 1}`
+    if (!(c.den > c.tu)) loi.push(`${o}: den phải lớn hơn tu`)
+    if (truoc && c.tu < truoc.tu) loi.push(`${o}: thời gian lùi so với cảnh trước`)
+    if (truoc && Math.abs(c.tu - truoc.den) > 0.05) nhac.push(`${o}: hở hoặc đè ${Math.abs(c.tu - truoc.den).toFixed(2)} giây với cảnh trước`)
+    if (c.hanh_dong === 'leo') loi.push(`${o}: bộ diễn xuất chưa có động tác leo, dùng phong cách nhóm khối với mặt bằng leo`)
+    else for (const [k, ds] of [['hanh_dong', BANG.hanh_dong_dien], ['may', BANG.may], ['tu_cho', Object.keys(BANG.cho)], ['den_cho', Object.keys(BANG.cho)]])
+      if (!ds.includes(c[k])) loi.push(`${o}: ${k} phải là một trong: ${ds.join(', ')}`)
+    for (const s of c.su_kien || []) if (!BANG.su_kien_dien.includes(s)) loi.push(`${o}: su_kien phải là một trong: ${BANG.su_kien_dien.join(', ')}`)
+    if (c.nhin_ve !== undefined && !BANG.nhin_ve.includes(c.nhin_ve)) loi.push(`${o}: nhin_ve phải là một trong: ${BANG.nhin_ve.join(', ')}`)
+    const a = BANG.cho[c.tu_cho], b = BANG.cho[c.den_cho], d = c.den - c.tu
+    if (a !== b && !['di', 'chay', 'nhay', 'nga'].includes(c.hanh_dong)) loi.push(`${o}: ${c.hanh_dong} mà đổi chỗ, sẽ bị trượt chân`)
+    if (truoc && truoc.den_cho !== c.tu_cho) loi.push(`${o}: cảnh trước kết ở ${truoc.den_cho}, cảnh này lại bắt đầu ở ${c.tu_cho}`)
+    const toc = Math.abs(b - a) * HS / Math.max(0.1, d)
+    if (c.hanh_dong === 'di' && toc > 1.1) nhac.push(`${o}: đi ${toc.toFixed(1)} đơn vị mỗi giây, nhanh quá, đổi sang chay hoặc kéo dài cảnh`)
+    if (c.hanh_dong === 'chay' && toc > 2.4) nhac.push(`${o}: chạy quá nhanh (${toc.toFixed(1)}), kéo dài cảnh hoặc rút ngắn quãng`)
+    if (['di', 'chay'].includes(c.hanh_dong) && a === b) nhac.push(`${o}: ${c.hanh_dong} mà không đổi chỗ, nhân vật sẽ đứng yên`)
+    if (c.hanh_dong === 'nhay' && d < 0.7) nhac.push(`${o}: nhảy dưới 0,7 giây trông giật`)
+    if (truoc && truoc.may === c.may) nhac.push(`${o}: trùng góc máy với cảnh trước`)
+    if (d > (doc ? 6 : 8)) nhac.push(`${o}: dài trên ${doc ? 6 : 8} giây, nên tách cảnh hoặc đổi góc`)
+    if ((c.su_kien || []).includes('hien')) hien = true
+    if ((c.su_kien || []).includes('an') && !hien) nhac.push(`${o}: có su_kien an mà chưa có hien trước đó`)
+    if (c.phu !== undefined && !BANG.phu[c.phu]) loi.push(`${o}: phu phải là một trong: ${Object.keys(BANG.phu).join(', ')}`)
+    if (c.noi !== undefined && !BANG.noi.includes(c.noi)) loi.push(`${o}: noi phải là chinh hoặc phu`)
+    const coPhu = c.phu && c.phu !== 'vang'
+    if (coPhu && !kb.nhan_vat_phu) loi.push(`${o}: có phu nhưng file chưa có nhan_vat_phu`)
+    if (c.noi === 'phu' && !coPhu) loi.push(`${o}: nhân vật phụ nói mà không có mặt`)
+    if (c.may === 'doi' && !coPhu) nhac.push(`${o}: góc doi (hai người) mà không có nhân vật phụ`)
+    if (c.tu_moc && c.tu_moc.some(t => typeof t.chu !== 'string' || !(t.tu >= c.tu - 1 && t.tu <= c.den + 1))) loi.push(`${o}: tu_moc nằm ngoài cảnh`)
+    truoc = c
+  })
+  if (kb.do_dai && Math.abs(kb.canh.at(-1).den - kb.do_dai) > kb.do_dai * 0.2) nhac.push(`Dài ${kb.canh.at(-1).den.toFixed(1)} giây, lệch mục tiêu ${kb.do_dai} giây`)
+  if (pd.kieu === 'tung-tu' && !kb.canh.some(c => c.tu_moc?.length)) nhac.push('Chữ từng từ đang chia đều theo chữ cái, chưa khớp giọng. Thêm --stt khi chia-canh')
+  if (doc && kb.canh.at(-1).den > 180) nhac.push('Khung dọc dài trên 3 phút, kiểm tra lại giới hạn Shorts hiện hành')
+  return { loi, nhac }
+}
+
 // ---- Dựng ----
 function timTrinhDuyet() {
   const w = [process.env.PROGRAMFILES, process.env['PROGRAMFILES(X86)'], process.env.LOCALAPPDATA].filter(Boolean)
@@ -264,25 +380,29 @@ function veBangTrinhDuyet(viec) {
       const u = new URL(req.url, 'http://127.0.0.1')
       if (!u.pathname.startsWith(ma)) return res.writeHead(404).end()
       const ten = u.pathname.slice(ma.length) || 'index.html'
-      if (req.method === 'POST' && (ten === 'xong' || ten === 'loi')) {
+      const goc = path.basename(ten)
+      if (req.method === 'POST' && (goc === 'xong' || goc === 'loi')) {
         const manh = []
         req.on('data', d => manh.push(d))
         req.on('end', () => {
           res.writeHead(204).end()
           const than = Buffer.concat(manh)
-          if (ten === 'loi') ket(new Loi(`Lỗi khi vẽ: ${than}`))
+          if (goc === 'loi') ket(new Loi(`Lỗi khi vẽ: ${than}`))
           else ket(null, { h264: than, ...Object.fromEntries(u.searchParams) })
         })
         return
       }
-      if (ten === 'viec') return res.writeHead(200, { 'content-type': 'application/json; charset=utf-8' }).end(JSON.stringify(viec))
-      if (!/^[a-z-]+\.(js|html)$/.test(ten) || !fs.existsSync(path.join(WEB, ten))) return res.writeHead(404).end()
-      res.writeHead(200, { 'content-type': LOAI[path.extname(ten)], 'cache-control': 'no-store' }).end(fs.readFileSync(path.join(WEB, ten)))
+      if (goc === 'viec') return res.writeHead(200, { 'content-type': 'application/json; charset=utf-8' }).end(JSON.stringify(viec))
+      // Chỉ phát file .js, .html trong web/ và web-dien/, không cho đi ngược thư mục
+      const file = path.resolve(DAY, ten)
+      const trong = Object.values(BO_DUNG).some(d => file.startsWith(path.join(DAY, d) + path.sep))
+      if (!/^[a-z0-9./-]+[.](js|html)$/i.test(ten) || ten.includes('..') || !trong || !fs.existsSync(file)) return res.writeHead(404).end()
+      res.writeHead(200, { 'content-type': LOAI[path.extname(ten)], 'cache-control': 'no-store' }).end(fs.readFileSync(file))
     })
     may.listen(0, '127.0.0.1', () => {
       const ds = ['--headless=new', `--user-data-dir=${hoSo}`, '--no-first-run', '--no-default-browser-check', '--disable-extensions', '--edge-skip-compat-layer-relaunch', '--disable-background-mode', '--disable-background-timer-throttling', '--disable-renderer-backgrounding', '--enable-gpu', '--ignore-gpu-blocklist']
       if (process.platform === 'win32') ds.push('--use-angle=d3d11')
-      ds.push(`http://127.0.0.1:${may.address().port}${ma}`)
+      ds.push(`http://127.0.0.1:${may.address().port}${ma}${BO_DUNG[viec.boDung] || 'web'}/index.html`)
       con = spawn(exe, ds, { stdio: 'ignore', windowsHide: true })
       con.on('error', e => ket(new Loi(`Không mở được trình duyệt: ${e.message}`)))
       hen = setTimeout(() => ket(new Loi('Quá giờ mà chưa dựng xong. Cập nhật Chrome, hoặc thử --co 540.')), Math.max(120, (viec.den - viec.tu) * 40) * 1000)
@@ -294,9 +414,11 @@ async function dung(kb, co) {
   const kq = kiem(kb)
   if (kq.loi.length) throw new Loi(kq.loi.join('\n'))
   if (!co.ra) throw new Loi('Thiếu --ra <file.mp4>')
-  const W = { 540: 540, 720: 720, 1080: 1080 }[co.co || 540]
-  if (!W) throw new Loi('--co chỉ nhận 540, 720 hoặc 1080')
-  const H = W * 16 / 9
+  const n = { 540: 540, 720: 720, 1080: 1080 }[co.co || 540]
+  if (!n) throw new Loi('--co chỉ nhận 540, 720 hoặc 1080')
+  // --co là cạnh ngắn: dọc n x 16n/9, ngang 16n/9 x n
+  const ngang = (kb.khung || 'doc') === 'ngang'
+  const W = ngang ? n * 16 / 9 : n, H = ngang ? n : n * 16 / 9
   const canh = chuanGio(kb.canh), batDau = Date.now()
 
   let tu = 0, den = canh.at(-1).den
@@ -310,9 +432,9 @@ async function dung(kb, co) {
     tu = c.tu; den = c.den
   }
   // Nháp giữ dưới 30 MB để gửi được sang điện thoại.
-  const bitrate = W === 1080 ? 14e6 : Math.round(Math.min(W * H * 8, 22e6 * 8 / (den - tu)))
-  const day = { ...kb, canh, mat_bang: kb.mat_bang || 'vuc', phu_de: kb.phu_de || { kieu: 'cum' } }
-  const r = await veBangTrinhDuyet({ bang: BANG, kb: day, W, H, tu, den, bitrate, inChu: !co['khong-chu'] })
+  const bitrate = n === 1080 ? 14e6 : Math.round(Math.min(W * H * 8, 22e6 * 8 / (den - tu)))
+  const day = { ...kb, canh, mat_bang: kb.mat_bang || (laDien(kb.phong_cach) ? 'san-khau' : 'vuc'), phu_de: kb.phu_de || { kieu: 'cum' } }
+  const r = await veBangTrinhDuyet({ bang: BANG, kb: day, W, H, tu, den, bitrate, inChu: !co['khong-chu'], boDung: laDien(kb.phong_cach) ? 'dien' : 'khoi' })
 
   fs.mkdirSync(path.dirname(path.resolve(co.ra)), { recursive: true })
   const tho = `${co.ra}.${process.pid}.h264`, wav = `${co.ra}.${process.pid}.wav`
@@ -342,7 +464,7 @@ async function dung(kb, co) {
 
   const anh = co.ra.replace(/\.mp4$/i, '') + '-to-khung.jpg'
   const cach = Math.max(1, Math.floor(+r.khung / 10))
-  lenh('ffmpeg', ['-loglevel', 'error', '-y', '-i', co.ra, '-vf', `select='not(mod(n\\,${cach}))',scale=270:480,tile=5x2`, '-frames:v', '1', '-update', '1', anh])
+  lenh('ffmpeg', ['-loglevel', 'error', '-y', '-i', co.ra, '-vf', `select='not(mod(n\\,${cach}))',scale=${ngang ? '480:270' : '270:480'},tile=5x2`, '-frames:v', '1', '-update', '1', anh])
   const giay = ((Date.now() - batDau) / 1000).toFixed(1)
   console.log(`Xong ${co.ra}: ${W}x${H}, ${(den - tu).toFixed(1)} giây video, dựng hết ${giay} giây, ${(fs.statSync(co.ra).size / 1048576).toFixed(1)} MB`)
   console.log(`Tờ khung: ${anh}`)
@@ -366,6 +488,7 @@ function goiY(co) {
     if (!t) throw new Loi(`--the-loai phải là một trong: ${Object.keys(BANG.the_loai).join(', ')}`)
     console.log(`${ma}: ${t.ten}`)
     t.phong_cach.forEach((p, i) => console.log(`  ${i + 1}. ${BANG.phong_cach[p].ten} (${p}): ${BANG.phong_cach[p].mo_ta}`))
+    if (t.phong_cach_dien?.length) console.log(`  diễn xuất (khung ngang hoặc dọc): ${t.phong_cach_dien.map(p => `${BANG.phong_cach[p].ten} (${p})`).join(', ')}`)
     console.log(`  mặt bằng: ${t.mat_bang.join(', ')} | mở: ${t.mo} | kết: ${t.ket}`)
   }
   if (co['do-dai']) {
@@ -382,10 +505,10 @@ async function chinh() {
 
   if (viec === 'danh-sach') {
     for (const [ma, p] of Object.entries(BANG.phong_cach)) {
-      console.log(`${ma}: ${p.ten} [${p.nhom}] (gọi bằng: ${p.goi.join(', ')})\n  ${p.mo_ta}`)
+      console.log(`${ma}: ${p.ten} [${p.nhom}, khung ${(p.khung || ['doc']).join('/')}] (gọi bằng: ${p.goi.join(', ')})\n  ${p.mo_ta}`)
       for (const [k, b] of Object.entries(p.boi_canh)) console.log(`  - ${k}: ${b.ten}`)
     }
-    for (const k of ['moc', 'hanh_dong', 'may', 'su_kien', 'dang', 'mu', 'deo']) console.log(`${k}: ${BANG[k].join(', ')}`)
+    for (const k of ['moc', 'hanh_dong', 'hanh_dong_dien', 'may', 'su_kien', 'su_kien_dien', 'nhin_ve', 'dang', 'mu', 'deo']) console.log(`${k}: ${BANG[k].join(', ')}`)
     for (const k of ['cho', 'mat_bang', 'phu', 'phu_de', 'the_loai', 'mo', 'ket']) console.log(`${k}: ${Object.keys(BANG[k]).join(', ')}`)
     console.log(`nhac: khong, ${Object.keys(KHONG_KHI).join(', ')}`)
   } else if (viec === 'goi-y') {
@@ -395,6 +518,15 @@ async function chinh() {
     const ds = co['phong-cach'] ? co['phong-cach'].split(',').map(x => timPhongCach(x.trim())) : Object.keys(BANG.phong_cach)
     for (const ma of ds) {
       const bc = Object.keys(BANG.phong_cach[ma].boi_canh)
+      if (laDien(ma)) {
+        const ks = co.khung ? co.khung.split(',') : ['ngang']
+        for (const b of co['moi-boi-canh'] ? bc : bc.slice(0, 1)) for (const k of ks) {
+          if (!BANG.phong_cach[ma].khung.includes(k)) throw new Loi(`--khung phải là ngang hoặc doc`)
+          await dung(kichBanDien(BANG, ma, b, k), { co: co.co, ra: path.join(co.ra, `mau-${ma}-${b}-${k}.mp4`) })
+        }
+        continue
+      }
+      if (co.khung && co.khung !== 'doc') { console.log(`Bỏ qua ${ma}: phong cách nhóm khối chỉ có khung dọc.`); continue }
       for (const b of co['moi-boi-canh'] ? bc : bc.slice(0, 1)) await dung(kichBanMau(BANG, ma, b, co['mat-bang']), { co: co.co, ra: path.join(co.ra, `mau-${ma}-${b}.mp4`) })
     }
   } else if (viec === 'chia-canh') {
@@ -403,17 +535,20 @@ async function chinh() {
     const ma = timPhongCach(co['phong-cach']), pc = BANG.phong_cach[ma]
     const dong = co.srt ? docSrt(co.srt) : docChu(co.chu, co['ngon-ngu'] || 'vi')
     if (!dong.length) throw new Loi('File lời đọc trống hoặc sai định dạng')
+    const dien = laDien(ma)
+    if (co.khung && !(pc.khung || ['doc']).includes(co.khung)) throw new Loi(`${pc.ten} chỉ có khung: ${(pc.khung || ['doc']).join(', ')}`)
     const kb = {
-      phong_cach: ma, boi_canh: co['boi-canh'] || Object.keys(pc.boi_canh)[0], moc: co.moc || 'thap', fps: 30,
+      phong_cach: ma, boi_canh: co['boi-canh'] || Object.keys(pc.boi_canh)[0], fps: 30,
+      ...(dien ? { khung: co.khung || 'ngang' } : { moc: co.moc || 'thap' }),
       nhan_vat: co['nhan-vat'] ? docJson(co['nhan-vat']) : pc.nhan_vat,
-      mat_bang: co['mat-bang'] || 'vuc',
+      mat_bang: dien ? 'san-khau' : co['mat-bang'] || 'vuc',
       phu_de: { kieu: co['phu-de'] || 'cum', mau: co['mau-nhan'] || '#ffd84d' },
       am: { nhac: co.nhac || pc.nhac, tieng_dong: !co['khong-tieng-dong'] },
     }
     if (co['nhan-vat-phu']) kb.nhan_vat_phu = co['nhan-vat-phu'] === 'mau' ? pc.phu_mau : docJson(co['nhan-vat-phu'])
     for (const [k, t] of [['the_loai', 'the-loai'], ['ngon_ngu', 'ngon-ngu'], ['mo', 'mo'], ['ket', 'ket']]) if (co[t]) kb[k] = co[t]
     if (co['do-dai']) kb.do_dai = +co['do-dai']
-    kb.canh = phanCanh(chuanGio(dong), kb)
+    kb.canh = (dien ? phanCanhDien : phanCanh)(chuanGio(dong), kb)
     if (co.stt) ganMocTu(kb.canh, co.stt)
     const kq = kiem(kb)
     fs.mkdirSync(path.dirname(path.resolve(co.ra)), { recursive: true })

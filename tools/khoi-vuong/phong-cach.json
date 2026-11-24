@@ -195,6 +195,97 @@
       },
       "nhan_vat": {"ten":"Nhím","dang":"thu","than":"#c08c64","mat":"#fff0dc","ao":"#c85848","quan":"#5c4034","phu":"#e8b048","mu":"tai","deo":"khan"},
       "phu_mau": {"ten":"Bông","dang":"thu","than":"#f0dcd0","mat":"#fffaf4","ao":"#788cb0","quan":"#7c6058","phu":"#f098b0","mu":"tai","deo":"khong"}
+    },
+    "khoi-dien": {
+      "ten": "Khối vuông diễn xuất",
+      "goi": ["khối diễn","khoi dien","khối vuông ngang","voxel diễn xuất"],
+      "mo_ta": "Nhân vật ghép khối hộp đầu to, mặt điểm ảnh, diễn xuất có khuỷu gối; thế giới khối có đuốc và bóng đổ. Hợp kinh dị, sinh tồn, truyện dài khung ngang.",
+      "boi_canh": {
+        "ham-nguc": {"ten":"Hầm ngục đuốc lửa"}
+      },
+      "nhan_vat": {"ten":"Bốp","dang":"nguoi","than":"#e8b48a","mat":"#2a1f1a","ao":"#e2672e","quan":"#2f3f5c","phu":"#1d2b3a","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Kẻ rình","dang":"quai","than":"#3a2f4a","mat":"#ff3b3b","ao":"#2a2236","quan":"#1c1726","phu":"#ff3b3b","mu":"khong","deo":"khong"},
+      "nhac": "cang",
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
+    },
+    "bong-den": {
+      "ten": "Bóng đen trong sương",
+      "goi": ["bóng đen","bong den","silhouette","sương mù","bóng tối"],
+      "mo_ta": "Nhân vật bóng đen viền sáng, mắt sáng, giữa rừng sương có tia sáng và bụi bay. Hợp bí ẩn, kinh dị, truyện đêm. Tông tối, ít màu.",
+      "boi_canh": {
+        "rung-suong": {"ten":"Rừng sương đêm"}
+      },
+      "nhan_vat": {"ten":"Bóng","dang":"nguoi","than":"#05080c","mat":"#cdf6ff","ao":"#05080c","quan":"#05080c","phu":"#cdf6ff","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Kẻ cao","dang":"quai","than":"#020304","mat":"#ff5a4a","ao":"#020304","quan":"#020304","phu":"#ff5a4a","mu":"khong","deo":"khong"},
+      "nhac": "cang",
+      "khong_tre_em": true,
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
+    },
+    "que-neon": {
+      "ten": "Người que neon",
+      "goi": ["người que neon","que neon","stick neon","neon tâm lý","stickman neon"],
+      "mo_ta": "Người que nét phát quang trên nền tối, vệt chuyển động, biểu tượng tâm lý hiện theo cảm xúc (chấm than, vòng lo âu, bong bóng nghĩ). Hợp tâm lý, phát triển bản thân, giải thích. Rẻ khi làm hàng loạt.",
+      "boi_canh": {
+        "pho-luoi": {"ten":"Phố lưới neon"}
+      },
+      "nhan_vat": {"ten":"Lam","dang":"nguoi","than":"#34e7ff","mat":"#ffffff","ao":"#34e7ff","quan":"#ff4fd8","phu":"#ffd84d","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Hồng","dang":"nguoi","than":"#ff4fd8","mat":"#ffffff","ao":"#ff4fd8","quan":"#34e7ff","phu":"#ffd84d","mu":"khong","deo":"khong"},
+      "nhac": "dien-tu",
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
+    },
+    "roi-giay": {
+      "ten": "Rối giấy 2,5D",
+      "goi": ["rối giấy","roi giay","giấy cắt","paper puppet","rối đinh ghim"],
+      "mo_ta": "Nhân vật cắt giấy nối đinh ghim ở khớp, cảnh nhiều lớp giấy có bóng đổ và thị sai, như sách truyện. Hợp cổ tích, lịch sử, dân gian, cảm động.",
+      "boi_canh": {
+        "doi-dem": {"ten":"Đồi đêm trăng"}
+      },
+      "nhan_vat": {"ten":"Bé Mũ Đỏ","dang":"nguoi","than":"#f2c9a0","mat":"#2b1d14","ao":"#d9a43a","quan":"#6a4c8c","phu":"#d23b2f","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Sói xám","dang":"thu","than":"#7d8590","mat":"#ffd84d","ao":"#5c636d","quan":"#4a5059","phu":"#ffd84d","mu":"khong","deo":"khong"},
+      "nhac": "am",
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
+    },
+    "diorama-toon": {
+      "ten": "Diorama low-poly",
+      "goi": ["diorama","low-poly diễn","diorama toon","mô hình đảo","tilt-shift"],
+      "mo_ta": "Người tí hon mặt phẳng, viền đen, đứng trên một đảo mô hình nhiều màu, tilt-shift như sa bàn, máy quay lượn nhẹ. Hợp lịch sử giải thích, nếu thì sao, khoa học.",
+      "boi_canh": {
+        "dao-lang": {"ten":"Đảo làng nhỏ"}
+      },
+      "nhan_vat": {"ten":"Tí","dang":"nguoi","than":"#f0c49a","mat":"#2a1c14","ao":"#d8402f","quan":"#2d3e66","phu":"#f2b134","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Na","dang":"nguoi","than":"#e9b48c","mat":"#2a1c14","ao":"#3d9a5b","quan":"#4a3b2c","phu":"#f2e1b0","mu":"khong","deo":"khong"},
+      "nhac": "phieu-luu",
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
+    },
+    "dat-set-studio": {
+      "ten": "Đất sét diễn xuất",
+      "goi": ["đất sét diễn","đất sét ngang","clay diễn","dat set studio","nặn đất sét"],
+      "mo_ta": "Nhân vật tròn trịa như nặn, bề mặt sần, hình nhảy 12 khung mỗi giây, ánh sáng studio ấm. Biểu cảm rõ nhất trong nhóm. Hợp hài, đời thường, Shorts.",
+      "boi_canh": {
+        "ban-dat-set": {"ten":"Bàn đất sét nắng"}
+      },
+      "nhan_vat": {"ten":"Bin","dang":"nguoi","than":"#f0b98e","mat":"#ffffff","ao":"#2f9e8f","quan":"#283a8c","phu":"#e84a3a","mu":"khong","deo":"khong"},
+      "phu_mau": {"ten":"Một Mắt","dang":"quai","than":"#8a4fc9","mat":"#ffffff","ao":"#8a4fc9","quan":"#8a4fc9","phu":"#ffd84d","mu":"khong","deo":"khong"},
+      "nhac": "vui",
+      "nhom": "dien-xuat",
+      "bo_dung": "dien",
+      "khung": ["ngang","doc"],
+      "mat_bang": ["san-khau"]
     }
   },
   "dang": ["thu","robot","vien","nguoi","quai"],
@@ -205,13 +296,17 @@
   "may": ["toan","can","doi","ngang","theo","vut","tren"],
   "cho": {"xuat-phat":-11,"nua-duong":-8.1,"mep":-5.2,"giua":0,"ben-kia":5.2,"dich":8},
   "su_kien": ["cau","sang"],
-  "mat_bang": {"vuc":"Vực và cầu","ham":"Đường hầm","leo":"Leo bậc lên cao","dau-truong":"Đấu trường"},
+  "mat_bang": {"vuc":"Vực và cầu","ham":"Đường hầm","leo":"Leo bậc lên cao","dau-truong":"Đấu trường","san-khau":"Sân khấu ngang (bộ diễn xuất)"},
   "phu": {"vang":"Không có mặt","theo":"Đi cùng","duoi":"Đuổi phía sau","doi-dien":"Đứng đối diện"},
   "noi": ["chinh","phu"],
   "phu_de": {"cum":"Cụm từ","tung-tu":"Từng từ nhảy theo giọng","khong":"Không chữ"},
-  "the_loai": {"sinh-ton":{"ten":"Sinh tồn","phong_cach":["sandbox-khoi","low-poly","kinh-di-retro"],"mat_bang":["vuc","ham","leo"],"mo":"that-bai","ket":"cu-lat"},"thu-thach":{"ten":"Thử thách","phong_cach":["do-choi-nhua","pixel-16bit","neon"],"mat_bang":["leo","vuc","dau-truong"],"mo":"ket-qua","ket":"vong-lap"},"kinh-di":{"ten":"Kinh dị","phong_cach":["kinh-di-retro","sandbox-khoi","giay-gap"],"mat_bang":["ham","vuc"],"mo":"cau-hoi","ket":"cu-lat"},"hai":{"ten":"Hài","phong_cach":["dat-set","pixel-16bit","do-choi-nhua"],"mat_bang":["dau-truong","vuc"],"mo":"that-bai","ket":"cu-lat"},"bai-hoc":{"ten":"Bài học, cảm động","phong_cach":["giay-gap","len-ni","dat-set"],"mat_bang":["leo","vuc"],"mo":"cau-hoi","ket":"bai-hoc"},"giai-thich":{"ten":"Giải thích","phong_cach":["sa-ban","neon","low-poly"],"mat_bang":["dau-truong","leo"],"mo":"cau-hoi","ket":"bai-hoc"}},
+  "the_loai": {"sinh-ton":{"ten":"Sinh tồn","phong_cach":["sandbox-khoi","low-poly","kinh-di-retro"],"mat_bang":["vuc","ham","leo"],"mo":"that-bai","ket":"cu-lat","phong_cach_dien":["khoi-dien","diorama-toon","bong-den"]},"thu-thach":{"ten":"Thử thách","phong_cach":["do-choi-nhua","pixel-16bit","neon"],"mat_bang":["leo","vuc","dau-truong"],"mo":"ket-qua","ket":"vong-lap","phong_cach_dien":["dat-set-studio","que-neon","khoi-dien"]},"kinh-di":{"ten":"Kinh dị","phong_cach":["kinh-di-retro","sandbox-khoi","giay-gap"],"mat_bang":["ham","vuc"],"mo":"cau-hoi","ket":"cu-lat","phong_cach_dien":["bong-den","khoi-dien","roi-giay"]},"hai":{"ten":"Hài","phong_cach":["dat-set","pixel-16bit","do-choi-nhua"],"mat_bang":["dau-truong","vuc"],"mo":"that-bai","ket":"cu-lat","phong_cach_dien":["dat-set-studio","que-neon","diorama-toon"]},"bai-hoc":{"ten":"Bài học, cảm động","phong_cach":["giay-gap","len-ni","dat-set"],"mat_bang":["leo","vuc"],"mo":"cau-hoi","ket":"bai-hoc","phong_cach_dien":["roi-giay","que-neon","dat-set-studio"]},"giai-thich":{"ten":"Giải thích","phong_cach":["sa-ban","neon","low-poly"],"mat_bang":["dau-truong","leo"],"mo":"cau-hoi","ket":"bai-hoc","phong_cach_dien":["que-neon","diorama-toon","roi-giay"]}},
   "mo": {"that-bai":"Mở bằng thất bại","cau-hoi":"Mở bằng câu hỏi","ket-qua":"Mở bằng kết quả"},
   "ket": {"cu-lat":"Kết bằng cú lật","vong-lap":"Kết nối về đầu","bai-hoc":"Kết bằng bài học"},
   "do_dai": [15,30,45,60],
-  "toc_do": {"vi":3.6,"en":2.5,"khac":2.6}
+  "toc_do": {"vi":3.6,"en":2.5,"khac":2.6},
+  "hanh_dong_dien": ["dung","nhin","noi","di","chay","nhay","nga","mung","xay","dao","giat-minh","vay","run","chi","nghi","buon","quay"],
+  "su_kien_dien": ["hien","an","sang","rung"],
+  "nhin_ve": ["phai","trai","may"],
+  "khung": ["doc","ngang"]
 }

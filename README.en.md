@@ -43,7 +43,7 @@ YouTube Machine is a set of 28 skills for AI coding assistants that run on your 
 | Cut | Edits by transcript, removing bad takes, silences and filler words | `yt-07f-cat-theo-chu` |
 | Review | Runs technical checks and verifies the video keeps its promise before publishing | `yt-07x-soat` |
 | Shorts | Picks standalone moments, crops them vertical and adds subtitles | `yt-07r-shorts` |
-| 7k | Builds vertical 3D Shorts in 10 styles (pixel blocks, clay, papercraft, felt...) with no image credits | `yt-07k-khoi-vuong` |
+| 7k | Builds videos in WebGL with no image credits: 10 block styles (vertical) and 6 acting styles (16:9 or vertical) | `yt-07k-khoi-vuong` |
 | Thumbnail | Places text correctly and checks it at small size | `yt-08t-thumbnail` |
 | 8 | Builds the SEO pack: 5 titles, description, chapters, tags, upload checklist | `yt-08-seo-publish` |
 | 9 | Covers the first 48 hours after publishing and what to do when views are low | `yt-09-post-publish` |
